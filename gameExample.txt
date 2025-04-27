@@ -4,7 +4,6 @@
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <link rel='stylesheet' href='game.css'>
-<link rel='stylesheet' href='coinFlip.css'>
 <link rel='shortcut icon' href='#'>
 <title>Coin Flip</title>
 </head>
@@ -20,14 +19,37 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="game-section">
-    </div>
-    <div class="dep-section">
-      <input type="text" class="input-dep">
-      <button class="btn-dep">dep</button>
-    </div>
-  </div>
 <script type="module" src='coinFlip.js'></script>
 </body>
 </html>
+
+
+// balance block
+
+const balance = document.querySelector('.balance');
+
+
+
+
+function setBalance(value) {
+  localStorage.setItem('balance', value)
+}
+
+function updateBalance() {
+  const balanceValue = localStorage.getItem('balance');
+  balance.innerText = parseInt(balanceValue) || 0;
+}
+
+function getBalance() {
+  return localStorage.getItem('balance')
+}
+
+
+if (!getBalance()) {
+  setBalance(0)
+  updateBalance()
+}else {
+  updateBalance()
+}
+
+// balance block

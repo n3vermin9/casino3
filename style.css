@@ -135,7 +135,7 @@ body {
 .card-img {
   /* width: 100%; */
   max-height: 174px;
-  filter: grayscale();
+  filter: grayscale() invert();
 }
 
 .card-section {

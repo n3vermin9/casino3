@@ -1,0 +1,15 @@
+export const spadesArr = [
+  { card: 'spades2', img: '/2_of_spades.svg', value: 2 },
+  { card: 'spades3', img: '/3_of_spades.svg', value: 3 },
+  { card: 'spades4', img: '/4_of_spades.svg', value: 4 },
+  { card: 'spades5', img: '/5_of_spades.svg', value: 5 },
+  { card: 'spades6', img: '/6_of_spades.svg', value: 6 },
+  { card: 'spades7', img: '/7_of_spades.svg', value: 7 },
+  { card: 'spades8', img: '/8_of_spades.svg', value: 8 },
+  { card: 'spades9', img: '/9_of_spades.svg', value: 9 },
+  { card: 'spades10', img: '/10_of_spades.svg', value: 10 },
+  { card: 'spadesJack', img: '/jack_of_spades.svg', value: 11 },
+  { card: 'spadesQueen', img: '/queen_of_spades.svg', value: 12 },
+  { card: 'spadesKing', img: '/king_of_spades.svg', value: 13 },
+  { card: 'spadesAce', img: '/ace_of_spades.svg', value: 14 },
+];

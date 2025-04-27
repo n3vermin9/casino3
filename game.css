@@ -1,0 +1,256 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Sans:wght@700&display=swap'); */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 100vh;
+}
+  *, *:before, *:after {
+  box-sizing: inherit;
+  font-family: 'Roboto Sans', sans-serif;
+  font-weight: 700;
+}
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+}
+  ol, ul {
+  list-style: none;
+  }
+  img {
+  max-width: 100%;
+  height: auto;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none !important;
+    cursor: crosshair;
+  }
+  
+  body {
+    -ms-overflow-style: none;
+    background: #000;
+    background-size: 40px 40px;
+    background-image: radial-gradient(circle, #ffffff10 1px, rgba(0, 0, 0, 0) 1px);
+  }
+  
+  /* nav */
+  
+  .nav {
+    position: fixed;
+    top: 0;
+    background: #000;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+  }
+  
+  .logo {
+    width: 40px;
+  }
+  
+  .logo-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .balance-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    width: 100px;
+    height: 40px;
+  }
+  
+  .balance::before {
+    content: '$';
+  }
+  
+  .balance-add {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 1px solid white;
+  }
+  
+  .balance-add-link {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  /* nav */
+
+.container {
+  height: 500px;
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-section {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid red; */
+}
+
+.dep-section {
+  width: 400px;
+  height: 100px;
+  padding: 20px;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-dep {
+  width: 200px;
+  height: 50px;
+  border: none;
+  background: #111;
+  outline-style: none;
+  font-size: 30px;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.input-dep::placeholder {
+  opacity: 0.2;
+  font-weight: 100;
+}
+
+.btn-dep {
+  width: 80px;
+  height: 50px;
+  background: #333;
+  outline-style: none;
+  font-size: 25px;
+  color: #fff;
+  padding-left: 10px;
+  border: none;
+}
+
+.btn-stop {
+  display: none;
+  width: 280px;
+  height: 50px;
+  font-size: 27px;
+  background: #111;
+  outline-style: none;
+  color: #fff;
+  border: none;
+  cursor: crosshair;
+}
+
+.game-block {
+  /* background: #fff; */
+  opacity: 0.2;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 100;
+}
+
+.all-block {
+  background: #00000090;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 100;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 250px;
+  height: 110px;
+  backdrop-filter: blur(1px); 
+  border: 1px solid #ffffff10;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  z-index: 101;
+  transition: opacity 1s ease;
+}
+
+.coefs {
+  width: 100%;
+  height: 30px;
+  background: #222;
+  position: absolute;
+  top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coef-block {
+  background: #333;
+  color: white;
+  border: 1px solid #000;
+  height: 100%;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  transition: background .5s ease;
+}
+
+.coef-block::before {
+  content: "x";
+}
+
+.probably-win {
+  color: #fff;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 15px;
+  /* border: 1px solid red; */
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .5s ease;
+}
+
+.probably-win::before {
+  content: '$';
+}

@@ -3,10 +3,10 @@
 <head>
 <meta charset='UTF-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='higherlower.css'>
 <link rel='stylesheet' href='game.css'>
-<link rel='stylesheet' href='coinFlip.css'>
 <link rel='shortcut icon' href='#'>
-<title>Coin Flip</title>
+<title>Higher-Lower</title>
 </head>
 <body>
   <div class="nav">
@@ -20,14 +20,27 @@
       </div>
     </div>
   </div>
+  <div class="all-block"></div>
   <div class="container">
     <div class="game-section">
+      <div class="game-block"></div>
+      <h1 class="probably-win"></h1>
+      <div class="coefs"></div>
+      <div class="tales">
+        <div class="tale tale0">
+        </div>
+        <div class="tale tale1">
+          <button value="true" class="btn-guess btn-higher">Higher</button>
+          <button value="false" class="btn-guess btn-lower">Lower</button>
+        </div>
+      </div>
     </div>
     <div class="dep-section">
-      <input type="text" class="input-dep">
+      <input placeholder="type $$$" type="text" class="input-dep">
       <button class="btn-dep">dep</button>
+      <button class="btn-stop">stop</button>
     </div>
   </div>
-<script type="module" src='coinFlip.js'></script>
+<script type="module" src='higherLower.js'></script>
 </body>
 </html>

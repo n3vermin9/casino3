@@ -65,5 +65,5 @@ import { gamesList } from "./gamesList.js";
 
 
 for (let i = 0; i < gamesList.length; i++) {
-  createCard(gamesList[0].image, gamesList[0].name, gamesList[0].link)
+  createCard(gamesList[i].image, gamesList[i].name, gamesList[i].link)
 }
