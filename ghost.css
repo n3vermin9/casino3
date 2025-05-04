@@ -1,0 +1,72 @@
+:root {
+  --ghost-speed: 20s;
+  --line-color: greenyellow;
+  --line-mask: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--line-color) 9%,
+    var(--line-color) 65%,
+    transparent 100%
+  );
+}
+
+.game-section {
+  border: 1px solid rgba(255, 255, 255, 0.205);
+  position: relative;
+}
+
+.ghost {
+  width: 60px;
+  height: 60px;
+  background-image: url('/ghostwin.png');
+  filter: grayscale();
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: 0;
+  transition: 
+    bottom var(--ghost-speed) cubic-bezier(.19,.4,.28,.31),
+    background-image 0.3s ease forwards;
+}
+
+.green-line {
+  z-index: 1;
+  width: 10px;
+  position: absolute;
+  bottom: 0;
+  height: 0;
+  overflow: hidden;
+  transition: 
+    bottom var(--ghost-speed) cubic-bezier(.19,.4,.28,.31) forwards,
+    height var(--ghost-speed) cubic-bezier(.19,.4,.28,.31) forwards;
+}
+
+.green-line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: var(--line-color);
+  mask-image: var(--line-mask);
+  -webkit-mask-image: var(--line-mask);
+}
+
+.green-line.lost {
+  --line-color: red;
+}
+
+.coef-div {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  left: 70px;
+  bottom: 0;
+  transition: bottom var(--ghost-speed) cubic-bezier(.19,.4,.28,.31) forwards;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
