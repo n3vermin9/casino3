@@ -49,7 +49,6 @@ let currentCoef = 0;
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    input.value = '';
     createCoefs(coefsArr);
     probablyWin.style.opacity = 0;
 });

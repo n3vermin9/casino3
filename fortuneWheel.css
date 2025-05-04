@@ -1,0 +1,31 @@
+.game-section {
+  position: relative;
+}
+
+.wheel-container {
+  width: 370px;
+  height: 370px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.wheel {
+  border-radius: 50%;
+  transition: transform 3s ease;
+  /* transform: rotate(-286deg); */
+  filter: grayscale();
+}
+
+.triangle-down {
+  width: 0;
+  height: 0;
+  position: absolute;
+  margin: 0;
+  top: 0;
+  border-top: 100px solid #00000090; /* Change color as needed */
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+}

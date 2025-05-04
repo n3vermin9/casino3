@@ -1,0 +1,96 @@
+.game-section {
+  /* border: 1px solid red; */
+  position: relative;
+}
+
+.slots-container {
+  /* border: 1px solid red; */
+  width: 330px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slots-row {
+  border: 1px solid #000;
+  width: 110px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.slots-row > * {
+  border: 1px solid #ffffff20;
+  height: 90px;
+  width: 100%;
+  color: white;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.slots-container {
+  position: relative;
+  overflow: hidden; /* Ensures the fade doesn't bleed outside */
+}
+
+.slots-container::before, 
+.slots-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 110px; /* Increased fade area */
+  z-index: 2; /* Higher z-index to ensure it covers slots */
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 0.8) 50%, 
+    transparent 100%
+  );
+}
+
+.slots-container::before {
+  top: 0;
+}
+
+.slots-container::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top, 
+    rgba(0, 0, 0, 1) 0%, 
+    rgba(0, 0, 0, 0.8) 50%, 
+    transparent 100%
+  );
+}
+
+
+.slots0-0 img, .slots0-1 img, .slots0-2 img,
+.slots1-0 img, .slots1-1 img, .slots1-2 img,
+.slots2-0 img, .slots2-1 img, .slots2-2 img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  /* filter: grayscale(); */
+}
+
+.btn-info {
+  background: none;
+  color: #ffffff90;
+  width: 23px;
+  height: 23px;
+  z-index: 1100;
+  font-weight: 900;
+  /* border-radius: 20%; */
+  border: 1px solid #ffffff90;
+  position: absolute;
+  right: 37px;
+  top: 0;
+  cursor: crosshair;
+}

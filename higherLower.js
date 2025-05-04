@@ -54,7 +54,6 @@ let depValue = 0;
 let currentCoef = 0;
 
 document.addEventListener('DOMContentLoaded', function() {
-    input.value = '';
     createCoefs(coefsArr);
     probablyWin.style.opacity = 0;
 });
@@ -201,8 +200,7 @@ btnGuess.forEach(btn => {
   btn.addEventListener('click', () => {
     let currentGuess = btn.value
     console.log(currentGuess);
-    let randomSpade = getRandomCard(spadesArr);
-    tale1.style.backgroundImage = `url(${randomSpade.img})`
+
     let result = randomSpade.value
     console.log(result);
 
@@ -222,10 +220,5 @@ btnGuess.forEach(btn => {
     if (btn.value == 'false' && firstResult > result) {
 
     }
-    if (btn.value == 'false' && firstResult > result) {
-
-    }
   })
 });
-
-// prevent highest card to drop 
