@@ -31,10 +31,16 @@
     </div>
     <div class="dep-section">
       <input placeholder="type $$$" type="text" class="input-dep">
-      <button class="btn-dep">dep</button>
+      <button onclick="playSound()" class="btn-dep">dep</button>
       <!-- <button class="btn-stop">stop</button> -->
     </div>
   </div>
+  <script>
+  function playSound() {
+    const audio = new Audio('btnDep.mp3');
+    audio.play();
+  }
+</script>
 <script type="module" src='fortuneWheel.js'></script>
 </body>
 </html>

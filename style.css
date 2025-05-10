@@ -110,9 +110,10 @@ body {
 .container {
   /* border: 1px solid red; */
   height: fit-content;
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column;
+  max-width: 1200px;
+  margin: 120px auto 0 auto; /* This centers horizontally */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 310px);
   justify-content: center;
   align-items: center;
   padding: 40px;
@@ -133,7 +134,7 @@ body {
 }
 
 .card-img {
-  /* width: 100%; */
+  transform: scale(.9);
   max-height: 174px;
   filter: grayscale();
 }

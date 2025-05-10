@@ -202,7 +202,7 @@ function handleNextRound() {
 
 tale.forEach(tale => {
     tale.addEventListener('click',  () => {
-        if ((Math.floor(Math.random() < 0))) {
+        if ((Math.floor(Math.random() < .4))) {
 
             tale0.style.backgroundImage = "url('/goldChest.png')";
             tale1.style.backgroundImage = "url('/goldChest.png')";

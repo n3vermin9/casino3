@@ -6,7 +6,7 @@
 <link rel='stylesheet' href='ghost.css'>
 <link rel='stylesheet' href='game.css'>
 <link rel='shortcut icon' href='#'>
-<title>Slots</title>
+<title>Ghost</title>
 </head>
 <body>
   <div class="nav">
@@ -23,16 +23,24 @@
   <div class="all-block"></div>
   <div class="container">
     <div class="game-section">
-      <div class="ghost"></div>
-      <div class="coef-div">x1.00</div>
+      <div class="ghost ghost-standing"></div>
+      <div class="coef-div ghost-standing">x1.00</div>
       <div class="green-line"></div>
+      <div class="vertical-ruler"></div>
     </div>
     <div class="dep-section">
       <input placeholder="type $$$" type="text" class="input-dep">
-      <button class="btn-dep">dep</button>
-      <button class="btn-stop">stop</button>
+      <button onclick="playSound()" class="btn-dep">dep</button>
+      <button onclick="playSound()" class="btn-stop">stop</button>
     </div>
   </div>
+  
+<script>
+  function playSound() {
+    const audio = new Audio('btnDep.mp3');
+    audio.play();
+  }
+</script>
 <script type="module" src='ghost.js'></script>
 </body>
 </html>
