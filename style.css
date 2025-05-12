@@ -36,6 +36,9 @@ html {
   -ms-user-select: none;
   user-select: none;
   outline: none !important;
+}
+
+* {
   cursor: crosshair;
 }
 
@@ -60,6 +63,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px 10px 20px;
+  z-index: 1000;
 }
 
 .logo {
@@ -82,27 +86,11 @@ body {
   color: #fff;
   width: 100px;
   height: 40px;
+  transition: visibility 1s ease;
 }
 
 .balance::before {
   content: '$';
-}
-
-.balance-add {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: 1px solid white;
-}
-
-.balance-add-link {
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: #fff;
 }
 
 /* nav */
@@ -176,4 +164,158 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.btn-acc {
+  background: url('sims.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #000;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.acc-modal {
+  width: 0;
+  height: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  right: 20px;
+  top: 10px;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  /* background: #111; */
+  backdrop-filter: blur(10px); 
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #333;
+  transition: opacity .2s ease, visibility .2s ease, height .2s ease, width .3s ease;
+}
+
+.acc-modal.opened {
+  visibility: visible;
+  opacity: 1;
+  width: 320px;
+  height: 220px;
+}
+
+.modal-close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  border: none;
+  border-radius: 5px;
+  background: #000;
+  color: white;
+}
+
+.modal-row {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.modal-pfp {
+  width: 100px;
+  height: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ffffff30;
+  border-radius: 10px;
+  background: url('/modal-pfp.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.modal-info {
+  height: 80px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-name {
+  width: 100%;
+  flex: 1;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.modal-balance {
+  width: 100%;
+  flex: 1;
+    font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.modal-balance::before {
+  content: "$";
+  padding-right: 2px;
+}
+
+.modal-logout {
+  width: 215px;
+  height: 40px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal-logout-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #000;
+}
+
+.balance-add {
+  width: 50px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  filter: grayscale();
+}
+
+.balance-add-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #fff;
+  font-size: 23px;
+}
+
+.acc-modal * {
+  /* border: 1px solid red; */
 }

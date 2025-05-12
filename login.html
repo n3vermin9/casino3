@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='login.css'>
+<link rel='shortcut icon' href='#'>
+<title>Login</title>
+</head>
+<body>
+  <div class="nav">
+    <a href="/index.html" class="logo-link">
+      <img src="logo.jpg" alt="" class="logo">
+    </a>
+  </div>
+  <div class="login-modal"></div>
+  <div class="container">
+      <div class="login-container">
+    <div class="login-card">
+      <h1 class="login-title">Log in</h1>
+      
+      <div class="login-form">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" autocomplete="off">
+        </div>
+        
+        <div class="input-group">
+          <label for="password">Password</label>
+          <div class="password-div">
+          <input type="text" id="password" name="password">
+          <input type="checkbox" id="togglePassword">
+          </div>
+        </div>
+        
+        <button class="login-btn">Log in</button>
+      </div>
+      
+      <div class="login-footer">
+        <p>Don't have an account? <a href="/register.html" class="footer-link">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+  </div>
+<script type="module" src='login.js'></script>
+</body>
+</html>

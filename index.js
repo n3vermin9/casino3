@@ -33,6 +33,11 @@ if (!getBalance()) {
 
 const container = document.querySelector('.container');
 
+const btnAcc = document.querySelector('.btn-acc');
+const accModal = document.querySelector('.acc-modal');
+const modalBalance = document.querySelector('.modal-balance');
+const modalClose = document.querySelector('.modal-close');
+
 function createCard(image, name, link, shouldFilter) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -41,10 +46,8 @@ function createCard(image, name, link, shouldFilter) {
   cardImg.classList.add('card-img');
   cardImg.src = image;
   
-  // Apply grayscale filter by default (as per your CSS)
   cardImg.style.filter = 'grayscale(100%)';
   
-  // Add invert filter if shouldFilter is true
   if (shouldFilter) {
     cardImg.style.filter += ' invert(100%)';
   }
@@ -72,7 +75,33 @@ function createCard(image, name, link, shouldFilter) {
   container.appendChild(card);
 }
 
-// Create cards using the imported gamesList
 gamesList.forEach(game => {
   createCard(game.image, game.name, game.link, game.filter);
 });
+
+
+btnAcc.addEventListener('click', (e) => {
+  e.stopPropagation();
+  accModal.classList.add('opened');
+  btnAcc.style.visibility = 'hidden';
+  modalBalance.innerText = balance.innerText;
+  balance.style.visibility = 'hidden';
+});
+
+document.addEventListener('click', (e) => {
+  if (accModal.classList.contains('opened') && !e.target.closest('.modal')) {
+    accModal.classList.remove('opened');
+    btnAcc.style.visibility = 'visible';
+    balance.style.visibility = 'visible';
+  }
+});
+
+accModal.addEventListener('click', (e) => {
+  e.stopPropagation();
+});
+
+modalClose.addEventListener('click', () => {
+    accModal.classList.remove('opened');
+    btnAcc.style.visibility = 'visible';
+    balance.style.visibility = 'visible';
+})

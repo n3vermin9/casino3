@@ -76,7 +76,6 @@ function showPayoutInfo() {
       background:rgb(0, 0, 0);
       padding: 25px;
       border-radius: 15px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.7);
       z-index: 1200;
       width: 90%;
       max-width: 400px;
