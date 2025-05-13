@@ -20,7 +20,7 @@ function loginModalAppear(text) {
   loginModal.classList.add('appear')
   setTimeout(() => {
     loginModal.classList.remove('appear')
-  }, 1500);
+  }, 2000);
 }
 
 
@@ -33,18 +33,30 @@ toggleButton.addEventListener('click', function() {
 btnLogin.addEventListener('click', () => {
   if (usernameInput.value === '' || passwordInput.value === '') return;
   
-  const data = {
-    nick: usernameInput.value,
-    pass: passwordInput.value
-  };
-  
-  const userData = JSON.parse(localStorage.getItem(`${data.nick}_${data.pass}`));
-  
-  if (!userData) {
-    console.log('Logged in as:', userData.nick);
-    return;
+  let usernameTaken = false;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith(`${usernameInput.value}_`)) {
+      usernameTaken = true;
+      break;
+    }
   }
-  loginModalAppear('this name is already taken');
+  
+  if (usernameTaken) {
+    loginModalAppear('This username is already taken');
+  } else {
+    // Create new account
+    const data = {
+      nick: usernameInput.value,
+      pass: passwordInput.value,
+      balance: 0
+    };
+    localStorage.setItem(`${data.nick}_${data.pass}`, JSON.stringify(data));
+    console.log('Account created successfully');
+
+    localStorage.setItem('showLoginMessage', 'true');
+    window.location.href = 'login.html';
+  }
 });
 
 

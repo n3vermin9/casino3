@@ -15,12 +15,19 @@ window.onload = function() {
   passwordInput.value = ''
 }
 
+window.addEventListener('DOMContentLoaded', () => {
+  if (localStorage.getItem('showLoginMessage') === 'true') {
+    loginModalAppear('Now sign in with new account');
+    localStorage.removeItem('showLoginMessage');
+  }
+});
+
 function loginModalAppear(text) {
   loginModal.innerText = text
   loginModal.classList.add('appear')
   setTimeout(() => {
     loginModal.classList.remove('appear')
-  }, 1500);
+  }, 2000);
 }
 
 
@@ -33,9 +40,12 @@ toggleButton.addEventListener('click', function() {
 btnLogin.addEventListener('click', () => {
   if (usernameInput.value === '' || passwordInput.value === '') return;
   
+  const getData = JSON.parse(localStorage.getItem(`${usernameInput.value}_${passwordInput.value}`));
+  
   const data = {
     nick: usernameInput.value,
-    pass: passwordInput.value
+    pass: passwordInput.value,
+    balance: getData.balance
   };
   
   const userData = JSON.parse(localStorage.getItem(`${data.nick}_${data.pass}`));
@@ -45,7 +55,9 @@ btnLogin.addEventListener('click', () => {
     return;
   }
   
-  console.log('Logged in as:', userData.nick);
+  localStorage.removeItem(`${data.nick}_${data.pass}`);
+  localStorage.setItem(`currentUser`, JSON.stringify(data));
+  window.location.href = 'index.html';
 });
 
 

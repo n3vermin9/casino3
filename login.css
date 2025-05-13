@@ -100,7 +100,8 @@ body {
 .login-modal {
   background: red;
   width: fit-content;
-  font-size: 15px;
+  text-wrap: nowrap;
+  font-size: 14px;
   font-weight: 100;
   height: 60px;
   border-radius: 5px;
@@ -126,6 +127,7 @@ body {
   opacity: 1;
   top: 15%;
 }
+
 
 .login-title {
   color: white;
