@@ -1,3 +1,5 @@
+import { updateBalance, getBalance, setBalance } from './mutualCode.js';
+let user = JSON.parse(localStorage.getItem('currentUser'));
 const balance = document.querySelector('.balance');
 const input = document.querySelector('.input-dep');
 const btnDep = document.querySelector('.btn-dep');
@@ -10,25 +12,6 @@ let depValue = 0;
 let isStarted = false;
 let animationRunning = false;
 
-function setBalance(value) {
-    localStorage.setItem('balance', Math.floor(value));
-}
-
-function updateBalance() {
-    const balanceValue = localStorage.getItem('balance');
-    balance.innerText = parseInt(balanceValue) || 0;
-}
-
-function getBalance() {
-    return localStorage.getItem('balance');
-}
-
-if (!getBalance()) {
-    setBalance(0);
-    updateBalance();
-} else {
-    updateBalance();
-}
 
 const columns = [
     [document.querySelector('.slots0-0'), document.querySelector('.slots0-1'), document.querySelector('.slots0-2')],

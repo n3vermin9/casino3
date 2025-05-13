@@ -1,8 +1,9 @@
 import { updateBalance, getBalance, setBalance } from './mutualCode.js';
-const btnAdd = document.querySelectorAll('.btn-add');
-
 let user = JSON.parse(localStorage.getItem('currentUser'));
 const balance = document.querySelector('.balance');
+
+const btnAdd = document.querySelectorAll('.btn-add');
+
 
 btnAdd.forEach(btn => {
   btn.addEventListener('click', () => {
