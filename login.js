@@ -40,20 +40,19 @@ toggleButton.addEventListener('click', function() {
 btnLogin.addEventListener('click', () => {
   if (usernameInput.value === '' || passwordInput.value === '') return;
   
-  const getData = JSON.parse(localStorage.getItem(`${usernameInput.value}_${passwordInput.value}`));
-  
-  const data = {
-    nick: usernameInput.value,
-    pass: passwordInput.value,
-    balance: getData.balance
-  };
-  
-  const userData = JSON.parse(localStorage.getItem(`${data.nick}_${data.pass}`));
+  const userKey = `${usernameInput.value}_${passwordInput.value}`;
+  const userData = JSON.parse(localStorage.getItem(userKey));
   
   if (!userData) {
     loginModalAppear('User doesn\'t exist');
     return;
   }
+  
+  const data = {
+    nick: usernameInput.value,
+    pass: passwordInput.value,
+    balance: userData.balance || 0
+  };
   
   localStorage.removeItem(`${data.nick}_${data.pass}`);
   localStorage.setItem(`currentUser`, JSON.stringify(data));
@@ -84,5 +83,5 @@ passwordInput.addEventListener('input', function() {
     this.value = this.value.slice(0, 13);
     handleShake(this)
   }
-  this.value = this.value.replace(/[^a-zA-Z, 0-9]/g, '');
+  this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
 });

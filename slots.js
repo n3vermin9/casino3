@@ -1,9 +1,8 @@
-import { updateBalance, getBalance, setBalance } from './mutualCode.js';
+import { updateBalance, getBalance, setBalance, playSound } from './mutualCode.js';
 let user = JSON.parse(localStorage.getItem('currentUser'));
 const balance = document.querySelector('.balance');
 const input = document.querySelector('.input-dep');
 const btnDep = document.querySelector('.btn-dep');
-const gameBlock = document.querySelector('.game-block');
 const allBlock = document.querySelector('.all-block');
 const btnInfo = document.querySelector('.btn-info');
 
@@ -377,6 +376,7 @@ initializeSlots();
 btnDep.addEventListener('click', (event) => {
     if (input.value && input.value !== '0' && !animationRunning) {
         isStarted = true;
+        playSound()
         depValue = parseInt(input.value);
         setBalance(parseInt(getBalance()) - depValue);
         updateBalance();

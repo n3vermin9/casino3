@@ -14,10 +14,8 @@
       <img src="logo.jpg" alt="" class="logo">
     </a>
     <div class="balance-box">
+      <p class="nav-name"></p>
       <div class="balance"></div>
-      <div class="balance-add">
-        <a href="balance.html" class="balance-add-link">+</a>
-      </div>
     </div>
   </div>
   <div class="all-block"></div>
@@ -30,17 +28,10 @@
     </div>
     <div class="dep-section">
       <input placeholder="type $$$" type="text" class="input-dep">
-      <button onclick="playSound()" class="btn-dep">dep</button>
-      <button onclick="playSound()" class="btn-stop">stop</button>
+      <button class="btn-dep">dep</button>
+      <button class="btn-stop">stop</button>
     </div>
   </div>
-  
-<script>
-  function playSound() {
-    const audio = new Audio('btnDep.mp3');
-    audio.play();
-  }
-</script>
 <script type="module" src='mutualCode.js'></script>
 <script type="module" src='ghost.js'></script>
 </body>

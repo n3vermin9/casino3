@@ -1,4 +1,4 @@
-import { updateBalance, getBalance, setBalance } from './mutualCode.js';
+import { updateBalance, getBalance, setBalance, playSound } from './mutualCode.js';
 let user = JSON.parse(localStorage.getItem('currentUser'));
 const balance = document.querySelector('.balance');
 
@@ -101,6 +101,7 @@ function handleInputAppear() {
 btnDep.addEventListener('click', () => {
     if (input.value && input.value !== '0') {
         handleInputHide();
+        playSound()
         depValue = parseInt(input.value); // Ensure depValue is an integer
         probablyWin.style.opacity = 1;
         probablyWin.innerText = 0;

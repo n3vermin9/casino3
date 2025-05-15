@@ -1,8 +1,13 @@
 // balance block
 
 const balance = document.querySelector('.balance');
+const navName = document.querySelector('.nav-name') || null;
 
 let user = JSON.parse(localStorage.getItem('currentUser'));
+
+if (navName) {
+  navName.innerText = user.nick
+}
 
 export function setBalance(value) {
   // Get current user from localStorage
@@ -42,3 +47,8 @@ export function getBalance() {
 updateBalance();
 
 // balance block
+
+export function playSound() {
+  const audio = new Audio('btnDep.mp3');
+  audio.play();
+}

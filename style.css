@@ -255,27 +255,30 @@ h1 {
 
 .modal-info {
   height: 80px;
-  width: 150px;
+  width: 170px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 4px;
+}
+
+.modal-info * {
+  border: 1px solid #ffffff30;
+  padding: 0 10px 0 5px;
+  border-radius: 3px;
+  width: fit-content;
+  min-width: 60%;
+  flex: 1;
+  display: flex;
   align-items: center;
 }
 
 .modal-name {
-  width: 100%;
-  flex: 1;
   font-size: 20px;
-  display: flex;
-  align-items: center;
 }
 
 .modal-balance {
-  width: 100%;
-  flex: 1;
-    font-size: 18px;
-  display: flex;
-  align-items: center;
+  font-size: 18px;
 }
 
 .modal-balance::before {

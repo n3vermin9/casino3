@@ -151,7 +151,9 @@ body {
 .input-group {
   display: flex;
   flex-direction: column;
+  position: relative;
   gap: 8px;
+  height: fit-content;
 }
 
 .input-group label {
@@ -232,4 +234,21 @@ body {
 .shake-animation {
   animation: shake 0.5s ease-in-out;
   border-color: #ffffff;
+}
+
+.password-rules {
+  width: 100%;
+  height: 0;
+  font-size: 15px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  transition: height .3s ease, opacity .4s ease;
+}
+
+.password-rules.expand {
+  height: 40px;
+  opacity: 1;
 }

@@ -1,4 +1,4 @@
-import { updateBalance, getBalance, setBalance } from './mutualCode.js';
+import { updateBalance, getBalance, setBalance, playSound } from './mutualCode.js';
 let user = JSON.parse(localStorage.getItem('currentUser'));
 const balance = document.querySelector('.balance');
 
@@ -14,7 +14,6 @@ const wheel = document.querySelector('.wheel')
 let isGameOver = false;
 
 let depValue = 0;
-let currentCoef = 0;
 
 function handleModal(result) {
   const modal = document.createElement('div');
@@ -76,6 +75,7 @@ let isStarted = false
 btnDep.addEventListener('click', (event) => {
     if (input.value && input.value !== '0') {
         isStarted = true
+        playSound()
         let current = Math.floor(Math.random() * -345)
         current -= 720
         wheel.style.transform = `rotate(${current}deg)`;
