@@ -1,0 +1,125 @@
+  .balance-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    color: #fff;
+    width: fit-content;
+    min-width: 60px;
+    gap: 5px;
+    height: 42px;
+  }
+  
+  .balance::before {
+    content: '$';
+  }
+
+  .nav-name {
+    font-size: 13px;
+    color: #666;
+  }
+
+.container-settings {
+  height: fit-content;
+  max-width: 1200px;
+  margin: 120px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  gap: 30px;
+}
+
+.container-settings * {
+  /* border: 1px solid red; */
+}
+
+.setting {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #000;
+  border-radius: 6px;
+  border: 1px solid #222;
+}
+
+.setting-text {
+  color: #fff;
+  font-size: 15px;
+}
+
+.input-username {
+  visibility: hidden;
+  position: absolute;
+  height: 28px;
+  width: 160px;
+  border: none;
+  border-radius: 3px;
+  background: #111;
+  border: 1px solid #222;
+  color: #fff;
+  outline: none;
+  font-size: 13px;
+  padding: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-setting {
+  height: 28px;
+  border: none;
+  border-radius: 3px;
+  background: #111;
+  border: none;
+  border: 1px solid #222;
+  color: rgb(255, 34, 34);
+  font-size: 14px;
+  padding: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+}
+
+.btn-setting:hover {
+  background: #222;
+  transition: all .2s ease;
+}
+
+
+
+.login-modal {
+  background: red;
+  width: fit-content;
+  text-wrap: nowrap;
+  font-size: 14px;
+  font-weight: 100;
+  height: 60px;
+  border-radius: 5px;
+  border: 1px solid #333;
+  background: #000;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 25px 4px 25px;
+  position: absolute;
+  z-index: 2200;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility .2s ease, opacity .2s ease, top .3s ease;
+}
+
+.login-modal.appear {
+  visibility: visible;
+  opacity: 1;
+  top: 11%;
+}

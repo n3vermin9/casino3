@@ -3,6 +3,8 @@
 const balance = document.querySelector('.balance');
 const navName = document.querySelector('.nav-name') || null;
 
+const loginModal = document.querySelector('.login-modal');
+
 let user = JSON.parse(localStorage.getItem('currentUser'));
 
 if (navName) {
@@ -30,7 +32,9 @@ export function updateBalance() {
     balance.innerText = parseInt(user.balance) || 0;
   } else {
     // Fallback if no user is logged in
-    balance.innerText = 0;
+    if (balance) {
+      balance.innerText = 0;
+    }
   }
 }
 
@@ -51,4 +55,12 @@ updateBalance();
 export function playSound() {
   const audio = new Audio('btnDep.mp3');
   audio.play();
+}
+
+export function loginModalAppear(text) {
+  loginModal.innerText = text
+  loginModal.classList.add('appear')
+  setTimeout(() => {
+    loginModal.classList.remove('appear')
+  }, 2000);
 }

@@ -1,3 +1,5 @@
+import { loginModalAppear } from './mutualCode.js';
+
 const toggleButton = document.getElementById('togglePassword');
 const usernameInput = document.getElementById('username')
 const passwordInput = document.getElementById('password');
@@ -16,15 +18,6 @@ window.onload = function() {
   usernameInput.value = ''
   passwordInput.value = ''
 }
-
-function loginModalAppear(text) {
-  loginModal.innerText = text
-  loginModal.classList.add('appear')
-  setTimeout(() => {
-    loginModal.classList.remove('appear')
-  }, 2000);
-}
-
 
 toggleButton.addEventListener('click', function() {
   passwordVisible = !passwordVisible;

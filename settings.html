@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='style.css'>
+<link rel='stylesheet' href='settings.css'>
+<link rel='shortcut icon' href='#'>
+<title>Settings</title>
+</head>
+<body>
+  <div class="nav">
+    <a href="/index.html" class="logo-link">
+      <img src="logo.jpg" alt="" class="logo">
+    </a>
+    <div class="balance-box">
+      <p class="nav-name"></p>
+      <div class="balance"></div>
+    </div>
+  </div>
+  <div class="login-modal"></div>
+  <div class="container-settings">
+    <div class="setting">
+      <div class="setting-text text-username"></div>
+      <button class="btn-setting btn-username">Change username</button>
+      <input type="text" class="input-username">
+    </div>
+    <div class="setting">
+      <div class="setting-text">Reset balance to $0</div>
+      <button class="btn-setting btn-balance-reset">Reset balance</button>
+    </div>
+    <div class="setting">
+      <div class="setting-text">Delete your account</div>
+      <button class="btn-setting btn-detele-acc">Delete account</button>
+    </div>
+  </div>
+<script type="module" src='mutualCode.js'></script>
+<script type="module" src='settings.js'></script>
+</body>
+</html>
