@@ -1,5 +1,12 @@
-import { updateBalance, getBalance, setBalance, playSound } from './mutualCode.js';
-let user = JSON.parse(localStorage.getItem('currentUser'));
+import {
+   updateBalance,
+   getBalance,
+   setBalance,
+   playSound,
+   logHistory,
+   getCurrentUser,
+  } from './mutualCode.js';
+
 const balance = document.querySelector('.balance');
 
 
@@ -95,30 +102,35 @@ btnDep.addEventListener('click', (event) => {
 
                 case (current <= -46 && current >= -75 || current <= -226 && current >= -255):
                     handleGameOver(`you won $${depValue * 2}`);
+                    logHistory('Fortune wheel', `+${depValue}`);
                     setBalance(parseInt(getBalance()) + depValue * 2);
                     updateBalance();
                     break;
                     
                 case (current <= -105 && current >= -135):
                     handleGameOver(`you won $${depValue * 4}`);
+                    logHistory('Fortune wheel', `+${depValue * 3}`);
                     setBalance(parseInt(getBalance()) + depValue * 4);
                     updateBalance();
                     break;  
 
                 case (current <= -165 && current >= -195):
                     handleGameOver(`you won $${depValue * 10}`);
+                    logHistory('Fortune wheel', `+${depValue * 9}`);
                     setBalance(parseInt(getBalance()) + depValue * 10);
                     updateBalance();
                     break;
 
                 case (current <= -286 && current >= -315):
                     handleGameOver(`you won $${depValue * 3}`);
+                    logHistory('Fortune wheel', `+${depValue * 2}`);
                     setBalance(parseInt(getBalance()) + depValue * 3);
                     updateBalance();
                     break;
 
                 case (current <= -16 && current >= -45 || current <= -76 && current >= -104 || current <= -136 && current >= -164 || current <= -196 && current >= -225 || current <= -256 && current >= -285 || current <= -316 && current >= -345):
                     handleGameOver('you lost');
+                    logHistory('Fortune wheel', `-${depValue}`);
                     break; 
             }
             handleReset();

@@ -1,5 +1,11 @@
-import { updateBalance, getBalance, setBalance, playSound } from './mutualCode.js';
-let user = JSON.parse(localStorage.getItem('currentUser'));
+import {
+   updateBalance,
+   getBalance,
+   setBalance,
+   playSound,
+   logHistory,
+   getCurrentUser,
+  } from './mutualCode.js';
 const balance = document.querySelector('.balance');
 
 
@@ -65,6 +71,7 @@ function handleReset() {
         if (parseInt(input.value) > parseInt(balance.innerText)) {
           input.value = '';
         }
+        input.focus()
     }, 3000);
 }
 
@@ -100,10 +107,12 @@ function calculateWinOrLose() {
         setBalance(parseInt(balance.innerText) + winnings);
         updateBalance();
         handleGhostWin();
+        logHistory('Ghost Crush', `+${winnings}`)
         return `win $${winnings}`;
     }
     
     // If we got here, it must be a crash
+    logHistory('Ghost Crush', `-${depValue}`);
     handleGhostLost();
     return `lost $${depValue}`;
 }
@@ -132,6 +141,7 @@ function updateGhostPosition() {
         clearInterval(rulerInterval)
         clearInterval(ghostInterval);
         clearInterval(coefInterval);
+        logHistory('Ghost Crush', `-${depValue}`);
         handleGhostLost();
         handleGameOver(`lost $${depValue}`);
         handleReset();

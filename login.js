@@ -45,7 +45,8 @@ btnLogin.addEventListener('click', () => {
   const data = {
     nick: usernameInput.value,
     pass: passwordInput.value,
-    balance: userData.balance || 0
+    balance: userData.balance || 0,
+    history: userData.history
   };
   
   localStorage.removeItem(`${data.nick}_${data.pass}`);

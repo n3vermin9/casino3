@@ -1,0 +1,100 @@
+body {
+  /* height: 100vh; */
+  /* overflow: hidden; */
+}
+
+.balance-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  color: #fff;
+  width: fit-content;
+  min-width: 60px;
+  gap: 5px;
+  height: 42px;
+}
+  
+.balance::before {
+  content: '$';
+}
+
+.nav-name {
+  font-size: 13px;
+  color: #666;
+}
+
+.container-history {
+  height: fit-content;
+  max-width: 1200px;
+  margin: 120px auto 0 auto;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  gap: 10px;
+}
+
+.card {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #000;
+  border-radius: 6px;
+  padding: 20px;
+  border: 1px solid #222;
+  position: relative;
+}
+
+.card * {
+  /* border: 1px solid red; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-title {
+  color: #fff;
+  font-size: 17px;
+  padding-left: 9px;
+}
+
+.card-amount {
+  color: #fff;
+  font-size: 16px;
+}
+
+.card-amount::after {
+  content: '$';
+  padding-left: 2px;
+}
+
+.triangle {
+  width: 10px;
+  height: 10px;
+  color: white;
+  position: absolute;
+  left: 9px;
+}
+
+.card-time {
+  color: white;
+  font-weight: 100;
+  font-size: 11px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+
+.card-time:hover {
+  opacity: .6;
+}

@@ -1,5 +1,12 @@
-import { updateBalance, getBalance, setBalance, playSound } from './mutualCode.js';
-let user = JSON.parse(localStorage.getItem('currentUser'));
+import {
+   updateBalance,
+   getBalance,
+   setBalance,
+   playSound,
+   logHistory,
+   getCurrentUser,
+  } from './mutualCode.js';
+
 const balance = document.querySelector('.balance');
 
 
@@ -116,6 +123,7 @@ btnStop.addEventListener('click', () => {
         const winnings = Math.floor(depValue * coefsArr[currentCoef - 1]); // Calculate winnings as integer
         setBalance(parseInt(balance.innerText) + winnings); // Add integer winnings
         updateBalance();
+        logHistory('Slots', `+${winnings}`);
         handleGameOver(`$${winnings}`);
         handleReset();
     }
@@ -136,7 +144,11 @@ function handleNextRound() {
     }
 
     if (currentCoef == coefsArr.length) {
-        handleGameOver((`$${Math.floor(depValue * 11)}`)); // Display final win as integer
+        handleGameOver((`$${Math.floor(depValue * 11)}`));
+        const winnings = Math.floor(depValue * 11);
+        setBalance(parseInt(balance.innerText) + winnings);
+        updateBalance();
+        logHistory('Slots', `+${depValue * 11}`);
         handleReset();
     }
 
@@ -181,11 +193,12 @@ function handleNextRound() {
 
 tale.forEach(tale => {
     tale.addEventListener('click',  () => {
-        if ((Math.floor(Math.random() < .4))) {
+        if ((Math.floor(Math.random() < 0))) {
 
             tale0.style.backgroundImage = "url('/goldChest.png')";
             tale1.style.backgroundImage = "url('/goldChest.png')";
             tale.style.backgroundImage = "url('/emptyChest.png')";
+            logHistory('Pirates', `-${depValue}`);
             handleGameOver('you lost');
             handleReset();
         }else{

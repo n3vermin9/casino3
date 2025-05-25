@@ -207,10 +207,6 @@ h1 {
   transition: opacity .3s ease, visibility .3s ease, max-height .2s ease;
 }
 
-.acc-modal * {
-  /* border: 1px solid red; */
-}
-
 .acc-modal.opened {
   visibility: visible;
   opacity: 1;
@@ -305,7 +301,6 @@ h1 {
 .row-2-elem {
   width: 100%;
   height: 50px;
-  /* border: 1px solid red; */
   border-bottom: 1px solid #ffffff20;
   font-size: 16px;
   position: relative;
@@ -327,10 +322,6 @@ h1 {
   border-bottom: none;
 }
 
-.modal-settings {
-}
-
-
 .modal-logout-link {
   display: flex;
   justify-content: center;
@@ -340,9 +331,6 @@ h1 {
   text-decoration: none;
   color: #fff;
   z-index: 3000;
-}
-
-.balance-add {
 }
 
 .balance-add-link {

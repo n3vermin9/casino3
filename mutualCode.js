@@ -1,66 +1,72 @@
-// balance block
-
-const balance = document.querySelector('.balance');
-const navName = document.querySelector('.nav-name') || null;
-
-const loginModal = document.querySelector('.login-modal');
-
-let user = JSON.parse(localStorage.getItem('currentUser'));
-
-if (navName) {
-  navName.innerText = user.nick
+export function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('currentUser'))
 }
 
-export function setBalance(value) {
-  // Get current user from localStorage
-  let user = JSON.parse(localStorage.getItem('currentUser'));
-  
-  if (user) {
-    // Update user's balance
-    user.balance = value;
-    // Save updated user back to localStorage
-    localStorage.setItem('currentUser', JSON.stringify(user));
-  }
+export function updateUserData(updates) {
+    const user = getCurrentUser();
+    const updatedUser = { ...user, ...updates };
+    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+    return updatedUser;
+}
+
+export function setBalance(newBalance) {
+    updateUserData({ balance: newBalance });
+    updateBalance();
 }
 
 export function updateBalance() {
-  // Get current user from localStorage
-  let user = JSON.parse(localStorage.getItem('currentUser'));
-  
-  if (user) {
-    // Update the displayed balance
-    balance.innerText = parseInt(user.balance) || 0;
-  } else {
-    // Fallback if no user is logged in
-    if (balance) {
-      balance.innerText = 0;
+    const balanceElement = document.querySelector('.balance');
+    if (balanceElement) {
+        balanceElement.textContent = getCurrentUser().balance;
     }
-  }
+    
+    const navName = document.querySelector('.nav-name');
+    if (navName) {
+        navName.textContent = getCurrentUser().nick;
+    }
 }
 
 export function getBalance() {
-  // Get current user from localStorage
-  let user = JSON.parse(localStorage.getItem('currentUser'));
-  
-  if (user) {
-    return user.balance;
-  }
-  return 0; // Default balance if no user
+    return getCurrentUser().balance;
 }
 
-updateBalance();
-
-// balance block
-
 export function playSound() {
-  const audio = new Audio('btnDep.mp3');
-  audio.play();
+    const audio = new Audio('btnDep.mp3');
+    audio.play().catch(e => console.log("Audio play failed:", e));
 }
 
 export function loginModalAppear(text) {
-  loginModal.innerText = text
-  loginModal.classList.add('appear')
-  setTimeout(() => {
-    loginModal.classList.remove('appear')
-  }, 2000);
+    const loginModal = document.querySelector('.login-modal');
+    if (!loginModal) return;
+    
+    loginModal.textContent = text;
+    loginModal.classList.add('appear');
+    
+    setTimeout(() => {
+        loginModal.classList.remove('appear');
+    }, 2000);
 }
+
+export function logHistory(gameName, amount) {
+    const now = new Date();
+    const time = [
+        String(now.getHours()).padStart(2, '0'), ':',
+        String(now.getMinutes()).padStart(2, '0'), ' ',
+        String(now.getDate()).padStart(2, '0'), '/',
+        String(now.getMonth() + 1).padStart(2, '0')
+    ].join('');
+
+    const currentUser = getCurrentUser();
+    const updatedHistory = [
+        ...(currentUser.history || []),
+        {
+            game: gameName,
+            money: amount,
+            time: time
+        }
+    ];
+    
+    updateUserData({ history: updatedHistory });
+}
+
+updateBalance();

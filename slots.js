@@ -1,5 +1,12 @@
-import { updateBalance, getBalance, setBalance, playSound } from './mutualCode.js';
-let user = JSON.parse(localStorage.getItem('currentUser'));
+import {
+   updateBalance,
+   getBalance,
+   setBalance,
+   playSound,
+   logHistory,
+   getCurrentUser,
+  } from './mutualCode.js';
+
 const balance = document.querySelector('.balance');
 const input = document.querySelector('.input-dep');
 const btnDep = document.querySelector('.btn-dep');
@@ -302,7 +309,6 @@ function checkWin() {
       columns[1][1].querySelector('img').src,
       columns[2][1].querySelector('img').src
   ].map(src => {
-      // Извлекаем только имя файла из полного пути
       const url = new URL(src);
       return url.pathname;
   });
@@ -324,9 +330,10 @@ function checkWin() {
           setBalance(parseInt(getBalance()) + winAmount);
           updateBalance();
           handleGameOver(`You won ${winAmount}! (${multiplier}x)`);
-      } else {
+          logHistory('Slots', `+${winAmount}`)
+        } else {
           handleGameOver('No win this time!');
-      }
+        }
       return true;
   }
   return false;
@@ -362,6 +369,7 @@ function handleStart() {
                   setTimeout(() => {
                       if (!checkWin()) {
                           handleGameOver('Try again!');
+                          logHistory('Slots', `-${depValue}`);
                       }
                       setTimeout(handleReset, 1000);
                   }, 300); // Add this delay - should match your bounce animation duration

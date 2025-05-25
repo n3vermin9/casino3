@@ -16,6 +16,7 @@ const btnModalLogout = document.querySelector('.modal-logout');
 const btnModalLogoutLink = document.querySelector('.modal-logout-link');
 
 const modalSettings = document.querySelector('.modal-settings');
+const modalHistory = document.querySelector('.modal-history');
 
 const modalName = document.querySelector('.modal-name');
 
@@ -73,6 +74,7 @@ if (user) { //when no account logged
   btnModalLogoutLink.innerText = 'Log out'
 } else {
   btnBalanceAdd.style.display = 'none'
+  modalHistory.style.display = 'none'
   modalSettings.style.display = 'none'
 }
 
@@ -90,6 +92,7 @@ btnModalLogout.addEventListener('click', () => {
       nick: user.nick,
       pass: user.pass,
       balance: user.balance,
+      history: user.history,
     }
     localStorage.setItem(`${user.nick}_${user.pass}`, JSON.stringify(data))
     localStorage.removeItem('currentUser');

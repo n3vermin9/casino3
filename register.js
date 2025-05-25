@@ -66,7 +66,9 @@ btnLogin.addEventListener('click', () => {
     const data = {
       nick: usernameInput.value,
       pass: passwordInput.value,
-      balance: 0
+      balance: 0,
+      history: [
+      ]
     };
     localStorage.setItem(`${data.nick}_${data.pass}`, JSON.stringify(data));
     console.log('Account created successfully');
