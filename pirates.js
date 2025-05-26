@@ -5,6 +5,7 @@ import {
    playSound,
    logHistory,
    getCurrentUser,
+   loginModalAppear,
   } from './mutualCode.js';
 
 const balance = document.querySelector('.balance');
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
     probablyWin.style.opacity = 0;
 });
 
+input.focus()
 
 let coefsArr = [1.5, 2, 3.1, 4.5, 6, 8, 11];
 
@@ -64,7 +66,6 @@ function handleReset() {
         tale0.style.backgroundImage = "url('/closedChest.png')";
         tale1.style.backgroundImage = "url('/closedChest.png')";
         gameBlock.style.opacity = .1;
-        btnStop.style.background = '#333';
         currentCoef = 0;
         handleInputAppear();
         coefs.innerHTML = '';
@@ -74,6 +75,7 @@ function handleReset() {
         createCoefs(coefsArr);
         probablyWin.style.opacity = 0;
         probablyWin.innerText = 0;
+        input.focus()
     }, 3000);
 }
 
@@ -117,8 +119,10 @@ btnDep.addEventListener('click', () => {
         updateBalance();
     }
 });
-
 btnStop.addEventListener('click', () => {
+  if (currentCoef == 0) {
+      loginModalAppear('Pick between two')
+      }
     if (currentCoef >= 1) {
         const winnings = Math.floor(depValue * coefsArr[currentCoef - 1]); // Calculate winnings as integer
         setBalance(parseInt(balance.innerText) + winnings); // Add integer winnings
@@ -159,11 +163,6 @@ function handleNextRound() {
         probablyWin.innerText = Math.floor(depValue * coefsArr[currentCoef - 1]); // Display probable win as integer
     }
 
-    if (currentCoef >= 1) {
-        btnStop.style.background = '#444';
-    }
-
-
     tale.forEach(tale => {
         gameBlock.style.display = 'block';
         tale.style.transform = 'translateY(200px)';
@@ -193,7 +192,7 @@ function handleNextRound() {
 
 tale.forEach(tale => {
     tale.addEventListener('click',  () => {
-        if ((Math.floor(Math.random() < 0))) {
+        if ((Math.floor(Math.random() < .4))) { // <------ .4 = 40% to lose
 
             tale0.style.backgroundImage = "url('/goldChest.png')";
             tale1.style.backgroundImage = "url('/goldChest.png')";

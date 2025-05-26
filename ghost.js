@@ -36,13 +36,26 @@ let hasCrashed = false;
 let stopClicked = false;
 let rulerHeight = 400;
 
+let isModalActive = false;
+
+input.focus()
+
 function handleModal(result) {
-setTimeout(() => {
+  isModalActive = true;
+  setTimeout(() => {
       const modal = document.createElement('div');
       modal.classList.add('modal');
       modal.innerText = result;
       allBlock.appendChild(modal);
-}, 500);
+      
+      // Remove modal after 3 seconds
+      setTimeout(() => {
+        if (modal.parentNode) {
+          modal.parentNode.removeChild(modal);
+        }
+        isModalActive = false;
+      }, 3000);
+  }, 500);
 }
 
 function handleReset() {
@@ -175,6 +188,8 @@ function updateGhostPosition() {
 }
 
 function startGhostRise() {
+    if (isModalActive) return;
+    
     handleInputHide();
     playSound()
     ghost.style.backgroundImage = 'url("/ghost.png")';
@@ -207,6 +222,11 @@ btnStop.addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (e) => {
+    if (isModalActive) {
+        e.preventDefault();
+        return;
+    }
+    
     if (e.key === 'Enter') {
         if (btnDep.style.display !== 'none' && input.value && input.value !== '0') {
             startGhostRise();
@@ -230,8 +250,6 @@ input.addEventListener('input', function() {
         this.value = balance.innerText;
     }
 });
-
-ghost.addEventListener('click', startGhostRise);
 
 function createSubRuler() {
   for (let i = 0; i < 15; i++) {

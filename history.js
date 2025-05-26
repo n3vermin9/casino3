@@ -60,8 +60,6 @@ if (!getCurrentUser().history.length > 0) {
   historyContainer.style.color = '#ffffff40'
 }
 
-console.log(getCurrentUser());
-
 getCurrentUser().history.forEach(element => {
   createCard(element.game, element.money, element.time)
 });

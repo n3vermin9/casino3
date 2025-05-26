@@ -22,6 +22,8 @@ let isGameOver = false;
 
 let depValue = 0;
 
+input.focus()
+
 function handleModal(result) {
   const modal = document.createElement('div');
   modal.classList.add('modal');
@@ -35,6 +37,7 @@ function handleReset() {
       gameBlock.style.opacity = .1;
       // btnStop.style.background = '#333';
       handleInputAppear();
+      input.focus()
       if (input.value > balance.innerText) {
         input.value = '';
       }

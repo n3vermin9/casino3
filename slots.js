@@ -18,6 +18,8 @@ let depValue = 0;
 let isStarted = false;
 let animationRunning = false;
 
+input.focus()
+
 
 const columns = [
     [document.querySelector('.slots0-0'), document.querySelector('.slots0-1'), document.querySelector('.slots0-2')],
@@ -289,6 +291,7 @@ function handleGameOver(text) {
     setTimeout(() => {
         allBlock.style.display = 'none';
         isGameOver = false;
+        input.focus()
     }, 3000);
     handleModal(text);
 }

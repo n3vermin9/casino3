@@ -33,20 +33,16 @@ body {
   justify-content: center;
   align-items: center;
   padding: 40px;
-  gap: 30px;
-}
-
-.container-settings * {
-  /* border: 1px solid red; */
+  gap: 20px;
 }
 
 .setting {
   width: 100%;
-  height: 80px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
   background: #000;
   border-radius: 6px;
   border: 1px solid #222;
@@ -54,7 +50,7 @@ body {
 
 .setting-text {
   color: #fff;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .input-username {
@@ -83,7 +79,7 @@ body {
   border: none;
   border: 1px solid #222;
   color: rgb(255, 34, 34);
-  font-size: 14px;
+  font-size: 13px;
   padding: 7px;
   display: flex;
   justify-content: center;

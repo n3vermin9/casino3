@@ -38,6 +38,14 @@ html {
   outline: none !important;
 }
 
+img {
+  user-select: none;   /* Prevent text selection */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  pointer-events: none;      /* Disable click/drag/touch interactions */
+}
+
 * {
   cursor: crosshair;
 }
