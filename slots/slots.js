@@ -28,22 +28,22 @@ const columns = [
 ];
 
 const emoArr = [
-  'imgs/frog.png',
-  'imgs/jester.png',
-  'imgs/voodoo.png',
-  'imgs/badPoison.png',
-  'imgs/pepe.png',
-  'imgs/mushroom.png',
-  'imgs/lips.png'];
+  '..imgs/frog.png',
+  '..imgs/jester.png',
+  '..imgs/voodoo.png',
+  '..imgs/badPoison.png',
+  '..imgs/pepe.png',
+  '..imgs/mushroom.png',
+  '..imgs/lips.png'];
 
 const payouts = {
-  'imgs/pepe.png': { multiplier: 100, probability: 0.01 },   // 1% (Jackpot)
-  'imgs/badPoison.png': { multiplier: 50, probability: 0.02 }, // 2% (Rare loss)
-  'imgs/frog.png': { multiplier: 10, probability: 0.08 },    // 8% (Big win)
-  'imgs/mushroom.png': { multiplier: 6, probability: 0.12 }, // 12% (Medium win)
-  'imgs/jester.png': { multiplier: 3, probability: 0.22 },   // 22% (Small win)
-  'imgs/lips.png': { multiplier: 3, probability: 0.22 },     // 22% (Small win)
-  'imgs/voodoo.png': { multiplier: 1, probability: 0.33 },   // 33% (Break-even)
+  '..imgs/pepe.png': { multiplier: 100, probability: 0.01 },   // 1% (Jackpot)
+  '..imgs/badPoison.png': { multiplier: 50, probability: 0.02 }, // 2% (Rare loss)
+  '..imgs/frog.png': { multiplier: 10, probability: 0.08 },    // 8% (Big win)
+  '..imgs/mushroom.png': { multiplier: 6, probability: 0.12 }, // 12% (Medium win)
+  '..imgs/jester.png': { multiplier: 3, probability: 0.22 },   // 22% (Small win)
+  '..imgs/lips.png': { multiplier: 3, probability: 0.22 },     // 22% (Small win)
+  '..imgs/voodoo.png': { multiplier: 1, probability: 0.33 },   // 33% (Break-even)
 };
 
 // Create and show payout information modal
@@ -51,14 +51,14 @@ function showPayoutInfo() {
   btnInfo.style.display = 'none'
   // Payout data
   const payouts = [
-      { image: 'imgs/pepe.png', name: 'Pepe', multiplier: 50, probability: '2%' },
-      { image: 'imgs/frog.png', name: 'Frog', multiplier: 6, probability: '10%' },
-      { image: 'imgs/mushroom.png', name: 'Mushroom', multiplier: 6, probability: '10%' },
-      { image: 'imgs/poison.png', name: 'Poison', multiplier: 4, probability: '20%' },
-      { image: 'imgs/jester.png', name: 'Jester', multiplier: 3, probability: '30%' },
-      { image: 'imgs/lips.png', name: 'Lips', multiplier: 3, probability: '30%' },
-      { image: 'imgs/voodoo.png', name: 'Voodoo', multiplier: 1, probability: '60%' },
-      { image: 'imgs/badPoison.png', name: 'Bad Poison', multiplier: 0, probability: '30%' }
+      { image: '..imgs/pepe.png', name: 'Pepe', multiplier: 50, probability: '2%' },
+      { image: '..imgs/frog.png', name: 'Frog', multiplier: 6, probability: '10%' },
+      { image: '..imgs/mushroom.png', name: 'Mushroom', multiplier: 6, probability: '10%' },
+      { image: '..imgs/poison.png', name: 'Poison', multiplier: 4, probability: '20%' },
+      { image: '..imgs/jester.png', name: 'Jester', multiplier: 3, probability: '30%' },
+      { image: '..imgs/lips.png', name: 'Lips', multiplier: 3, probability: '30%' },
+      { image: '..imgs/voodoo.png', name: 'Voodoo', multiplier: 1, probability: '60%' },
+      { image: '..imgs/badPoison.png', name: 'Bad Poison', multiplier: 0, probability: '30%' }
   ];
 
   // Create modal container
