@@ -65,7 +65,7 @@ function handleReset() {
 
         currentPosition = 0;
         ghost.style.bottom = '0px';
-        ghost.style.backgroundImage = 'url("/ghostWin.png")';
+        ghost.style.backgroundImage = 'url("imgs/ghostWin.png")';
         ghost.style.transform = 'rotate(0deg)';
         greenLine.style.height = '0px';
         coefDiv.style.bottom = '0px';
@@ -131,14 +131,14 @@ function calculateWinOrLose() {
 }
 
 function handleGhostLost() {
-    ghost.style.backgroundImage = 'url("/ghostLost.png")';
+    ghost.style.backgroundImage = 'url("imgs/ghostLost.png")';
     ghost.style.transform = 'rotate(0deg)';
     greenLine.classList.add('lost');
     coefDiv.style.color = 'red';
 }
 
 function handleGhostWin() {
-    ghost.style.backgroundImage = 'url("/ghostWin.png")';
+    ghost.style.backgroundImage = 'url("imgs/ghostWin.png")';
     ghost.style.transform = 'rotate(0deg)';
 }
 
@@ -192,7 +192,7 @@ function startGhostRise() {
     
     handleInputHide();
     playSound()
-    ghost.style.backgroundImage = 'url("/ghost.png")';
+    ghost.style.backgroundImage = 'url("imgs/ghost.png")';
     ghost.style.transform = 'rotate(-90deg)';
     ghost.classList.remove('ghost-standing')
     coefDiv.classList.remove('ghost-standing')

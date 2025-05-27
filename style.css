@@ -182,7 +182,7 @@ h1 {
 }
 
 .btn-acc {
-  background: url('sims.jpg');
+  background: url('imgs/sims.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -260,7 +260,7 @@ h1 {
   align-items: center;
   border: 1px solid #ffffff30;
   border-radius: 8px;
-  background: url('/modal-pfp.jpg');
+  background: url('imgs/modal-pfp.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
