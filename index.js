@@ -1,6 +1,12 @@
-import { gamesList } from "./gamesList.js";
+import {
+   updateBalance,
+   getBalance,
+   setBalance,
+   playSound,
+   logHistory,
+   getCurrentUser,
+  } from 'mutualCode.js';
 
-let user = JSON.parse(localStorage.getItem('currentUser'));
 const balance = document.querySelector('.balance');
 
 const container = document.querySelector('.container');
@@ -51,10 +57,10 @@ function createCard(image, name, link, shouldFilter) {
   const btnLink = document.createElement('a');
   btnLink.classList.add('btn-link');
   
-  if (user) {
+  if (getCurrentUser()) {
     btnLink.href = link;
   } else {
-    btnLink.href =  'login.html'
+    btnLink.href =  'login/login.html'
   }
 
   btnLink.textContent = 'Play';
@@ -69,8 +75,8 @@ gamesList.forEach(game => {
 
 
 
-if (user) { //when no account logged
-  modalName.innerText = user.nick
+if (getCurrentUser()) { //when no account logged
+  modalName.innerText = getCurrentUser().nick
   btnModalLogoutLink.innerText = 'Log out'
 } else {
   btnBalanceAdd.style.display = 'none'
@@ -82,19 +88,19 @@ if (user) { //when no account logged
 let isModalLogout = false
 
 btnModalLogout.addEventListener('click', () => {
-  if (!user) {
-    btnModalLogoutLink.href =  'login.html'
+  if (!getCurrentUser()) {
+    btnModalLogoutLink.href =  'login/login.html'
   }
   btnModalLogoutLink.style.color = 'red'
   if (isModalLogout) {
-    btnModalLogoutLink.href =  'login.html'
+    btnModalLogoutLink.href =  'login/login.html'
     let data = {
-      nick: user.nick,
-      pass: user.pass,
-      balance: user.balance,
-      history: user.history,
+      nick: getCurrentUser().nick,
+      pass: getCurrentUser().pass,
+      balance: getCurrentUser().balance,
+      history: getCurrentUser().history,
     }
-    localStorage.setItem(`${user.nick}_${user.pass}`, JSON.stringify(data))
+    localStorage.setItem(`${getCurrentUser().nick}_${getCurrentUser().pass}`, JSON.stringify(data))
     localStorage.removeItem('currentUser');
   }
   isModalLogout = true

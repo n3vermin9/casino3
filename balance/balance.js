@@ -1,4 +1,4 @@
-import { updateBalance, getBalance, setBalance } from './mutualCode.js';
+import { updateBalance, getBalance, setBalance } from '../mutualCode.js';
 let user = JSON.parse(localStorage.getItem('currentUser'));
 const balance = document.querySelector('.balance');
 
