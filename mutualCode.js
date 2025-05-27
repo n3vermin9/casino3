@@ -1,5 +1,21 @@
+export function redirectUser() {
+  const ALLOWED_PAGES = ['index.html', 'login.html', 'register.html'];
+  const currentPage = window.location.pathname.split('/').pop();
+  if (
+    (!getCurrentUser() || getCurrentUser().nick === 'Guest') && 
+    !ALLOWED_PAGES.includes(currentPage)
+  ) {
+    window.location.href = '../index.html';
+  }
+}
+
 export function getCurrentUser() {
-    return JSON.parse(localStorage.getItem('currentUser'))
+    const user = localStorage.getItem('currentUser');
+    return user ? JSON.parse(user) : { 
+        balance: 0, 
+        nick: 'Guest', 
+        history: [] 
+    };
 }
 
 export function updateUserData(updates) {
@@ -14,25 +30,17 @@ export function setBalance(newBalance) {
     updateBalance();
 }
 
-export function updateBalance() {
-    const balanceElement = document.querySelector('.balance');
-    if (balanceElement) {
-        balanceElement.textContent = getCurrentUser().balance;
-    }
-    
-    const navName = document.querySelector('.nav-name');
-    if (navName) {
-        navName.textContent = getCurrentUser().nick;
-    }
-}
-
 export function getBalance() {
     return getCurrentUser().balance;
 }
 
-export function playSound() {
-    const audio = new Audio('btnDep.mp3');
-    audio.play().catch(e => console.log("Audio play failed:", e));
+export function updateBalance() {
+    const user = getCurrentUser();
+    const balanceElement = document.querySelector('.balance');
+    const navName = document.querySelector('.nav-name');
+    
+    if (balanceElement) balanceElement.textContent = user.balance;
+    if (navName) navName.textContent = user.nick;
 }
 
 export function loginModalAppear(text) {
@@ -69,4 +77,4 @@ export function logHistory(gameName, amount) {
     updateUserData({ history: updatedHistory });
 }
 
-updateBalance();
+updateBalance()

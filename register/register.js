@@ -71,10 +71,8 @@ btnLogin.addEventListener('click', () => {
       ]
     };
     localStorage.setItem(`${data.nick}_${data.pass}`, JSON.stringify(data));
-    console.log('Account created successfully');
 
-    localStorage.setItem('showLoginMessage', 'true');
-    window.location.href = 'login.html';
+   window.location.href = window.location.origin + '/login/login.html';
   }
 });
 

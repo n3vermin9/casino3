@@ -71,14 +71,6 @@
 }
 
 
-.slots0-0 img, .slots0-1 img, .slots0-2 img,
-.slots1-0 img, .slots1-1 img, .slots1-2 img,
-.slots2-0 img, .slots2-1 img, .slots2-2 img {
-  width: 70%;
-  height: 70%;
-  object-fit: contain;
-  /* filter: grayscale(); */
-}
 
 .btn-info {
   background: none;

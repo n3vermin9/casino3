@@ -2,7 +2,6 @@ import {
    updateBalance,
    getBalance,
    setBalance,
-   playSound,
    logHistory,
    getCurrentUser,
   } from '../mutualCode.js';
@@ -37,6 +36,9 @@ function handleReset() {
       gameBlock.style.opacity = .1;
       // btnStop.style.background = '#333';
       handleInputAppear();
+      if (parseInt(input.value) > parseInt(balance.innerText)) {
+        input.value = '';
+      }
       input.focus()
       if (input.value > balance.innerText) {
         input.value = '';
@@ -85,7 +87,6 @@ let isStarted = false
 btnDep.addEventListener('click', (event) => {
     if (input.value && input.value !== '0') {
         isStarted = true
-        playSound()
         let current = Math.floor(Math.random() * -345)
         current -= 720
         wheel.style.transform = `rotate(${current}deg)`;

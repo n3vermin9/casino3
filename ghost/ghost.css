@@ -19,7 +19,7 @@
 .ghost {
   width: 60px;
   height: 60px;
-  background-image: url('imgs/ghostwin.png');
+  background-image: url('/imgs/ghostwin.png');
   filter: grayscale();
   background-repeat: no-repeat;
   background-size: contain;

@@ -31,6 +31,9 @@ toggleButton.addEventListener('click', function() {
   toggleButton.innerHTML = passwordVisible ? eyeOn : eyeOff;
 });
 
+const userKey = `${usernameInput.value}_${passwordInput.value}`;
+const userData = JSON.parse(localStorage.getItem(userKey));
+
 btnLogin.addEventListener('click', () => {
   if (usernameInput.value === '' || passwordInput.value === '') return;
   
@@ -51,7 +54,7 @@ btnLogin.addEventListener('click', () => {
   
   localStorage.removeItem(`${data.nick}_${data.pass}`);
   localStorage.setItem(`currentUser`, JSON.stringify(data));
-  window.location.href = 'index.html';
+  window.location.href = '../index.html';
 });
 
 

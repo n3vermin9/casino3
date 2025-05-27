@@ -2,9 +2,10 @@ import {
    updateBalance,
    getBalance,
    setBalance,
-   playSound,
    logHistory,
    getCurrentUser,
+   updateUserData,
+   redirectUser,
   } from '../mutualCode.js';
 
 const balance = document.querySelector('.balance');
@@ -19,7 +20,7 @@ let isStarted = false;
 let animationRunning = false;
 
 input.focus()
-
+redirectUser()
 
 const columns = [
     [document.querySelector('.slots0-0'), document.querySelector('.slots0-1'), document.querySelector('.slots0-2')],
@@ -28,139 +29,216 @@ const columns = [
 ];
 
 const emoArr = [
-  '..imgs/frog.png',
-  '..imgs/jester.png',
-  '..imgs/voodoo.png',
-  '..imgs/badPoison.png',
-  '..imgs/pepe.png',
-  '..imgs/mushroom.png',
-  '..imgs/lips.png'];
+  '../imgs/frog.png',
+  '../imgs/jester.png',
+  '../imgs/voodoo.png',
+  '../imgs/badPoison.png',
+  '../imgs/pepe.png',
+  '../imgs/mushroom.png',
+  '../imgs/lips.png'
+];
 
 const payouts = {
-  '..imgs/pepe.png': { multiplier: 100, probability: 0.01 },   // 1% (Jackpot)
-  '..imgs/badPoison.png': { multiplier: 50, probability: 0.02 }, // 2% (Rare loss)
-  '..imgs/frog.png': { multiplier: 10, probability: 0.08 },    // 8% (Big win)
-  '..imgs/mushroom.png': { multiplier: 6, probability: 0.12 }, // 12% (Medium win)
-  '..imgs/jester.png': { multiplier: 3, probability: 0.22 },   // 22% (Small win)
-  '..imgs/lips.png': { multiplier: 3, probability: 0.22 },     // 22% (Small win)
-  '..imgs/voodoo.png': { multiplier: 1, probability: 0.33 },   // 33% (Break-even)
+  '../imgs/pepe.png': { multiplier: 100, probability: 0.01 },     // 1% (Jackpot)
+  '../imgs/badPoison.png': { multiplier: 50, probability: 0.02 },  // 2% (Rare loss)
+  '../imgs/frog.png': { multiplier: 10, probability: 0.08 },       // 8% (Big win)
+  '../imgs/mushroom.png': { multiplier: 6, probability: 0.12 },    // 12% (Medium win)
+  '../imgs/jester.png': { multiplier: 3, probability: 0.22 },      // 22% (Small win)
+  '../imgs/lips.png': { multiplier: 3, probability: 0.22 },        // 22% (Small win)
+  '../imgs/voodoo.png': { multiplier: 1, probability: 0.33 },      // 33% (Break-even)
 };
 
-// Create and show payout information modal
+
+let isPayoutInfoActive = false
+
+function handleModal2(result) {
+  setTimeout(() => {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2000;
+      background: #000;
+      overflow-y: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+      border-radius: 10px;
+      border: 1px solid #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      max-height: 0;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity .3s ease, visibility .3s ease, max-height .2s ease;
+    `;
+    
+    modal.innerHTML = result;
+    allBlock.appendChild(modal);
+    
+    // Trigger the animation
+    setTimeout(() => {
+      modal.style.maxHeight = '500px';
+      modal.style.visibility = 'visible';
+      modal.style.opacity = '1';
+    }, 10);
+    
+    // Auto-close after 3 seconds
+    setTimeout(() => {
+      modal.style.maxHeight = '0';
+      modal.style.visibility = 'hidden';
+      modal.style.opacity = '0';
+      setTimeout(() => {
+        if (modal.parentNode) {
+          modal.parentNode.removeChild(modal);
+        }
+      }, 300);
+    }, 3000);
+  }, 1000);
+}
+
 function showPayoutInfo() {
-  btnInfo.style.display = 'none'
-  // Payout data
+  btnInfo.style.display = 'none';
+  
   const payouts = [
-      { image: '..imgs/pepe.png', name: 'Pepe', multiplier: 50, probability: '2%' },
-      { image: '..imgs/frog.png', name: 'Frog', multiplier: 6, probability: '10%' },
-      { image: '..imgs/mushroom.png', name: 'Mushroom', multiplier: 6, probability: '10%' },
-      { image: '..imgs/poison.png', name: 'Poison', multiplier: 4, probability: '20%' },
-      { image: '..imgs/jester.png', name: 'Jester', multiplier: 3, probability: '30%' },
-      { image: '..imgs/lips.png', name: 'Lips', multiplier: 3, probability: '30%' },
-      { image: '..imgs/voodoo.png', name: 'Voodoo', multiplier: 1, probability: '60%' },
-      { image: '..imgs/badPoison.png', name: 'Bad Poison', multiplier: 0, probability: '30%' }
+    { image: '../imgs/pepe.png', name: 'Pepe', multiplier: 50, probability: '2%' },
+    { image: '../imgs/frog.png', name: 'Frog', multiplier: 6, probability: '10%' },
+    { image: '../imgs/mushroom.png', name: 'Mushroom', multiplier: 6, probability: '10%' },
+    { image: '../imgs/jester.png', name: 'Jester', multiplier: 3, probability: '30%' },
+    { image: '../imgs/lips.png', name: 'Lips', multiplier: 3, probability: '30%' },
+    { image: '../imgs/voodoo.png', name: 'Voodoo', multiplier: 1, probability: '60%' },
+    { image: '../imgs/badPoison.png', name: 'Bad Poison', multiplier: 0, probability: '30%' }
   ];
 
   // Create modal container
   const modal = document.createElement('div');
-  modal.className = 'payout-modal';
   modal.style.cssText = `
-    scrollbar-width: none;
-    scroll-behavior: smooth;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background:rgb(0, 0, 0);
-      padding: 25px;
-      border-radius: 15px;
-      z-index: 1200;
-      width: 90%;
-      max-width: 400px;
-      max-height: 50vh;
-      overflow-y: auto;
-      color: white;
-      border: 1px solid #333;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2000;
+    background: #000;
+    border-radius: 10px;
+    border: 1px solid #333;
+    color: white;
+    padding: 25px;
+    width: 330px;
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s ease, visibility .3s ease, max-height .2s ease;
+    overflow-y: auto;
   `;
 
-  // Create close button
-  const closeBtn = document.createElement('span');
-  closeBtn.innerHTML = '&times;';
-  closeBtn.style.cssText = `
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 28px;
-      cursor: pointer;
-      color: #ccc;
-  `;
-  closeBtn.onclick = () => {
-    btnInfo.style.display = 'block'
-    document.body.removeChild(modal);
+
+  modal.style.scrollbarWidth = 'none';
+  modal.style.msOverflowStyle = 'none';
+  const style = document.createElement('style');
+  style.innerHTML = `
+  #yourDivId::-webkit-scrollbar {
+    display: none;
   }
+`;
 
   // Create title
   const title = document.createElement('h2');
   title.textContent = 'Payout Info';
   title.style.cssText = `
-      margin-top: 0;
-      color: #fff;
-      text-align: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-      padding-bottom: 10px;
+    margin-top: 0;
+    color: #fff;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding-bottom: 10px;
+    width: 100%;
   `;
 
   // Create payout items container
   const itemsContainer = document.createElement('div');
   itemsContainer.style.marginTop = '20px';
+  itemsContainer.style.width = '100%';
 
   // Create each payout item
   payouts.forEach(item => {
-      const itemDiv = document.createElement('div');
-      itemDiv.style.cssText = `
-          display: flex;
-          align-items: center;
-          margin-bottom: 15px;
-          padding: 10px;
-          background:rgb(0, 0, 0);
-          border-radius: 2px;
-          border-left: 4px solid rgb(255, 255, 255);
-          border: 1px solid #ffffff20;
-      `;
+    const itemDiv = document.createElement('div');
+    itemDiv.style.cssText = `
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      padding: 10px;
+      background:rgb(0, 0, 0);
+      border-radius: 7px;
+      border-left: 4px solid rgb(255, 255, 255);
+      border: 1px solid #ffffff20;
+    `;
 
-      // Create image
-      const img = document.createElement('img');
-      img.src = item.image;
-      img.alt = item.name;
-      img.style.cssText = `
-          width: 40px;
-          height: 40px;
-          margin-right: 15px;
-          object-fit: contain;
-      `;
+    // Create image
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = item.name;
+    img.style.cssText = `
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+      object-fit: contain;
+    `;
 
-      // Create details
-      const details = document.createElement('div');
-      details.innerHTML = `
-          <h4 style="margin: 0 0 5px 0; color:rgb(255, 255, 255);">${item.name}</h3>
-          <p style="margin: 2px 0; font-size: 13px;">Payout: x${item.multiplier}</p>
-          <p style="margin: 2px 0; font-size: 13px;">Probability: ${item.probability}</p>
-      `;
+    // Create details
+    const details = document.createElement('div');
+    details.innerHTML = `
+      <h4 style="margin: 0 0 5px 0; color:rgb(255, 255, 255);">${item.name}</h3>
+      <p style="margin: 2px 0; font-size: 13px;">Payout: x${item.multiplier}</p>
+      <p style="margin: 2px 0; font-size: 13px;">Probability: ${item.probability}</p>
+    `;
 
-      itemDiv.appendChild(img);
-      itemDiv.appendChild(details);
-      itemsContainer.appendChild(itemDiv);
+    itemDiv.appendChild(img);
+    itemDiv.appendChild(details);
+    itemsContainer.appendChild(itemDiv);
   });
 
-
-
   // Assemble modal
-  modal.appendChild(closeBtn);
   modal.appendChild(title);
   modal.appendChild(itemsContainer);
 
   // Add to document
   document.body.appendChild(modal);
+  
+  // Trigger the animation
+  setTimeout(() => {
+    modal.style.maxHeight = '430px';
+    modal.style.visibility = 'visible';
+    modal.style.opacity = '1';
+  }, 10);
+
+  isPayoutInfoActive = true;
+
+  // Close when clicking outside
+  const clickOutsideHandler = (e) => {
+    if (isPayoutInfoActive && !modal.contains(e.target) && e.target !== btnInfo) {
+      modal.style.maxHeight = '0';
+      modal.style.visibility = 'hidden';
+      modal.style.opacity = '0';
+      setTimeout(() => {
+        if (modal.parentNode) {
+          modal.parentNode.removeChild(modal);
+        }
+        btnInfo.style.display = 'block';
+      }, 300);
+      document.removeEventListener('click', clickOutsideHandler);
+    }
+  };
+  
+  setTimeout(() => {
+    document.addEventListener('click', clickOutsideHandler);
+  }, 10);
 }
 
 btnInfo.onclick = showPayoutInfo;
@@ -189,7 +267,11 @@ function getRandomEmoji() {
 function initializeSlots() {
     columns.forEach(column => {
         column.forEach(slot => {
-            slot.innerHTML = `<img src="${getRandomEmoji()}" alt="slot icon">`;
+          slot.innerHTML = '';
+          slot.style.backgroundImage = `url('${getRandomEmoji()}')`;
+          slot.style.backgroundSize = '60%';
+          slot.style.backgroundRepeat = 'no-repeat';
+          slot.style.backgroundPosition = 'center';
         });
     });
 }
@@ -213,9 +295,10 @@ function animateColumn(column, columnIndex, delay) {
             }
             lastSpinTime = now;
             
-            column[0].innerHTML = column[1].innerHTML;
-            column[1].innerHTML = column[2].innerHTML;
-            column[2].innerHTML = `<img src="${getRandomEmoji()}" alt="slot icon">`;
+            // Update the background images instead of innerHTML
+            column[0].style.backgroundImage = column[1].style.backgroundImage;
+            column[1].style.backgroundImage = column[2].style.backgroundImage;
+            column[2].style.backgroundImage = `url('${getRandomEmoji()}')`;
             
             spinCount++;
             
@@ -281,10 +364,8 @@ function handleModal(result) {
 }
 
 function handleReset() {
-    // gameBlock.style.opacity = 1;
     input.style.display = 'block';
     btnDep.style.display = 'block';
-    // gameBlock.style.display = 'block';
     if (input.value > balance.innerText) {
         input.value = '';
     }
@@ -314,16 +395,20 @@ input.addEventListener('input', function() {
 
 function checkWin() {
   if (animationRunning || currentStoppedColumn < 2) return false;
+  
+  // Get the background images of the middle row
   const middleRow = [
-      columns[0][1].querySelector('img').src,
-      columns[1][1].querySelector('img').src,
-      columns[2][1].querySelector('img').src
-  ].map(src => {
-      const url = new URL(src);
-      return url.pathname;
+      columns[0][1].style.backgroundImage,
+      columns[1][1].style.backgroundImage,
+      columns[2][1].style.backgroundImage
+  ].map(bg => {
+      // Extract the URL from the background-image property
+      const match = bg.match(/url\("?(.*?)"?\)/);
+      return match ? match[1] : '';
   });
 
-  if (middleRow[0] === middleRow[1] && middleRow[1] === middleRow[2]) {
+  if (middleRow[0] && middleRow[1] && middleRow[2] && 
+      middleRow[0] === middleRow[1] && middleRow[1] === middleRow[2]) {
       const emoji = middleRow[0];
       const payout = payouts[emoji];
       
@@ -355,12 +440,12 @@ function handleStart() {
     resetAnimationState();
     input.style.display = 'none';
     btnDep.style.display = 'none';
-    // gameBlock.style.display = 'none';
     
+    // Initialize all slots with random emojis
     columns.forEach(column => {
-        column[0].innerHTML = `<img src="${getRandomEmoji()}" alt="slot icon">`;
-        column[1].innerHTML = `<img src="${getRandomEmoji()}" alt="slot icon">`;
-        column[2].innerHTML = `<img src="${getRandomEmoji()}" alt="slot icon">`;
+        column[0].style.backgroundImage = `url('${getRandomEmoji()}')`;
+        column[1].style.backgroundImage = `url('${getRandomEmoji()}')`;
+        column[2].style.backgroundImage = `url('${getRandomEmoji()}')`;
     });
     
     animateColumn(columns[0], 0, 0);
@@ -375,14 +460,13 @@ function handleStart() {
                 currentStoppedColumn = 1;
                 setTimeout(() => {
                   currentStoppedColumn = 2;
-                  // Add delay to ensure animations complete before checking
                   setTimeout(() => {
                       if (!checkWin()) {
                           handleGameOver('Try again!');
                           logHistory('Slots', `-${depValue}`);
                       }
                       setTimeout(handleReset, 1000);
-                  }, 300); // Add this delay - should match your bounce animation duration
+                  }, 300);
               }, 1000); 
             }, 800);
         }, 600);
@@ -394,7 +478,6 @@ initializeSlots();
 btnDep.addEventListener('click', (event) => {
     if (input.value && input.value !== '0' && !animationRunning) {
         isStarted = true;
-        playSound()
         depValue = parseInt(input.value);
         setBalance(parseInt(getBalance()) - depValue);
         updateBalance();

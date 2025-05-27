@@ -1,0 +1,12 @@
+.dollar {
+  width: 65px;
+  height: 29px;
+  border: none;
+  background: #fff;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.dollar:hover {
+  background: #d3d3d3;
+}

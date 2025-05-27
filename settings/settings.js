@@ -2,10 +2,12 @@ import {
    updateBalance,
    getBalance,
    setBalance,
-   playSound,
    logHistory,
    getCurrentUser,
-  } from '../mutualCode.js';
+   updateUserData,
+   redirectUser,
+   loginModalAppear,
+} from '../mutualCode.js';
 
 
 const balance = document.querySelector('.balance');
@@ -19,27 +21,32 @@ const btnClearHistory = document.querySelector('.btn-clear-history');
 const textUsername = document.querySelector('.text-username');
 const usernameInput = document.querySelector('.input-username');
 
+
+// Initialize UI
+redirectUser()
 usernameInput.value = '';
 usernameInput.style.visibility = 'hidden';
+textUsername.textContent = `Username: ${getCurrentUser().nick}`;
+if (navName) navName.textContent = getCurrentUser().nick;
 
 function handleUsername() {
-    if (btnUsername.innerText === 'Cancel') {
+    if (btnUsername.textContent === 'Cancel') {
         resetUsernameInput();
         return;
     }
 
-    if (btnUsername.innerText === 'Change username') {
+    if (btnUsername.textContent === 'Change username') {
         showUsernameInput();
         return;
     }
 
     if (usernameInput.value === '') {
-        loginModalAppear('Username cannot be empty');
+        loginModalAppear('Username can\nt be empty')
         return;
     }
 
     if (isUsernameTaken(usernameInput.value)) {
-        loginModalAppear('This username is already taken');
+        loginModalAppear('Username is already taken')
         return;
     }
 
@@ -49,14 +56,14 @@ function handleUsername() {
 function resetUsernameInput() {
     usernameInput.style.visibility = 'hidden';
     usernameInput.value = '';
-    btnUsername.innerText = 'Change username';
+    btnUsername.textContent = 'Change username';
     btnUsername.style.color = 'red';
 }
 
 function showUsernameInput() {
     usernameInput.style.visibility = 'visible';
     usernameInput.focus();
-    btnUsername.innerText = 'Cancel';
+    btnUsername.textContent = 'Cancel';
     btnUsername.style.color = 'red';
 }
 
@@ -71,19 +78,19 @@ function isUsernameTaken(username) {
 }
 
 function saveNewUsername(newUsername) {
+    const currentUser = getCurrentUser();
     const updatedUser = {
-        nick: newUsername,
-        pass: getCurrentUser().pass,
-        balance: getCurrentUser().balance,
+        ...currentUser,
+        nick: newUsername
     };
     
-    localStorage.removeItem('currentUser');
-    localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-    let user = getCurrentUser()
-    user = updatedUser;
+    // Update both currentUser and stored user data
+    updateUserData({ nick: newUsername });
+    localStorage.setItem(`currentUser`, JSON.stringify(updatedUser));
+
     
-    if (navName) navName.innerText = newUsername;
-    textUsername.innerText = `Username: ${newUsername}`;
+    if (navName) navName.textContent = newUsername;
+    textUsername.textContent = `Username: ${newUsername}`;
     resetUsernameInput();
 }
 
@@ -107,9 +114,9 @@ function enableAllButtons() {
     });
 }
 
-function handleCertain(btn, text, type) {
+function handleConfirmation(btn, text, type, action) {
     let counter = 9;
-    btn.innerText = `Confirm (${counter})`;
+    btn.textContent = `Confirm (${counter})`;
     counter--;
     
     clearInterval(interval);
@@ -118,31 +125,33 @@ function handleCertain(btn, text, type) {
     
     interval = setInterval(() => {
         if (counter < 0) {
-            btn.innerText = text;
+            btn.textContent = text;
             clearInterval(interval);
             activeConfirmation = null;
             enableAllButtons();
             return;
         }
-        btn.innerText = `Confirm (${counter})`;
+        btn.textContent = `Confirm (${counter})`;
         counter--;
     }, 1000);
 }
 
 function handleBalanceReset() {
-    if (balance.innerText === '0') return;
+    if (getBalance() === 0) return;
     
     if (activeConfirmation && activeConfirmation !== 'reset') return;
     
     if (activeConfirmation !== 'reset') {
-        handleCertain(btnBalanceReset, 'Reset balance', 'reset');
+        handleConfirmation(btnBalanceReset, 'Reset balance', 'reset', () => {
+            setBalance(0);
+            updateBalance();
+        });
         return;
     }
     
     clearInterval(interval);
     setBalance(0);
-    updateBalance();
-    btnBalanceReset.innerText = 'Reset balance';
+    btnBalanceReset.textContent = 'Reset balance';
     activeConfirmation = null;
     enableAllButtons();
 }
@@ -151,39 +160,38 @@ function handleDeleteAcc() {
     if (activeConfirmation && activeConfirmation !== 'delete') return;
     
     if (activeConfirmation !== 'delete') {
-        handleCertain(btnDeleteAcc, 'Delete account', 'delete');
+        handleConfirmation(btnDeleteAcc, 'Delete account', 'delete', () => {
+            localStorage.removeItem('currentUser');
+            location.reload()
+        });
         return;
     }
     
     clearInterval(interval);
     localStorage.removeItem('currentUser');
-    window.location.href = 'index.html';
+    location.reload()
 }
 
 function handleClearHistory() {
-    if (getCurrentUser().history == []) return;
+    if (getCurrentUser().history.length === 0) return;
     
     if (activeConfirmation && activeConfirmation !== 'clear') return;
     
     if (activeConfirmation !== 'clear') {
-        handleCertain(btnClearHistory, 'Clear history', 'clear');
+        handleConfirmation(btnClearHistory, 'Clear history', 'clear', () => {
+            updateUserData({ history: [] });
+        });
         return;
     }
     
     clearInterval(interval);
-    // Actually clear the history here
-    const user = getCurrentUser();
-    user.history = [];
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    
-    btnClearHistory.innerText = 'Clear history';
+    updateUserData({ history: [] });
+    btnClearHistory.textContent = 'Clear history';
     activeConfirmation = null;
     enableAllButtons();
 }
 
-textUsername.innerText = `Username: ${getCurrentUser().nick}`;
-if (navName) navName.innerText = getCurrentUser().nick;
-
+// Event listeners
 btnUsername.addEventListener('click', handleUsername);
 btnBalanceReset.addEventListener('click', handleBalanceReset);
 btnDeleteAcc.addEventListener('click', handleDeleteAcc);
@@ -196,10 +204,10 @@ usernameInput.addEventListener('input', function() {
     this.value = this.value.replace(/[^a-zA-Z]/g, '');
     
     if (this.value.length > 0) {
-        btnUsername.innerText = 'Save username';
+        btnUsername.textContent = 'Save username';
         btnUsername.style.color = 'green';
     } else {
-        btnUsername.innerText = 'Cancel';
+        btnUsername.textContent = 'Cancel';
         btnUsername.style.color = 'red';
     }
 });

@@ -17,7 +17,7 @@
 .tale {
   height: 180px;
   width: 180px;
-  background-image: url('imgs/closedChest.png');
+  background-image: url("../imgs/closedChest.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 80%;
@@ -28,8 +28,4 @@
   align-items: center;
   filter: grayscale() invert();
   transition: transform .5s .3s ease, opacity 0s ease;
-}
-
-.tale1 {
-  /* transform: scaleX(-1); */
 }

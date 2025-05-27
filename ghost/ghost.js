@@ -2,9 +2,9 @@ import {
    updateBalance,
    getBalance,
    setBalance,
-   playSound,
    logHistory,
    getCurrentUser,
+   redirectUser,
   } from '../mutualCode.js';
 const balance = document.querySelector('.balance');
 
@@ -40,6 +40,9 @@ let isModalActive = false;
 
 input.focus()
 
+redirectUser()
+updateBalance()
+
 function handleModal(result) {
   isModalActive = true;
   setTimeout(() => {
@@ -65,7 +68,7 @@ function handleReset() {
 
         currentPosition = 0;
         ghost.style.bottom = '0px';
-        ghost.style.backgroundImage = 'url("../imgs/ghostWin.png")';
+        ghost.style.backgroundImage = 'url("../imgs/ghostwin.png")';
         ghost.style.transform = 'rotate(0deg)';
         greenLine.style.height = '0px';
         coefDiv.style.bottom = '0px';
@@ -191,7 +194,6 @@ function startGhostRise() {
     if (isModalActive) return;
     
     handleInputHide();
-    playSound()
     ghost.style.backgroundImage = 'url("../imgs/ghost.png")';
     ghost.style.transform = 'rotate(-90deg)';
     ghost.classList.remove('ghost-standing')
