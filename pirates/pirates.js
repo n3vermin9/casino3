@@ -6,7 +6,7 @@ import {
    logHistory,
    getCurrentUser,
    loginModalAppear,
-  } from './mutualCode.js';
+  } from '../mutualCode.js';
 
 const balance = document.querySelector('.balance');
 
@@ -63,8 +63,8 @@ function handleModal(result) {
 
 function handleReset() {
     setTimeout(() => {
-        tale0.style.backgroundImage = "url('imgs/closedChest.png')";
-        tale1.style.backgroundImage = "url('imgs/closedChest.png')";
+        tale0.style.backgroundImage = "url('../imgs/closedChest.png')";
+        tale1.style.backgroundImage = "url('../imgs/closedChest.png')";
         gameBlock.style.opacity = .1;
         currentCoef = 0;
         handleInputAppear();
@@ -173,8 +173,8 @@ function handleNextRound() {
 
         setTimeout(() => {
             tale.style.transform = 'translateY(-600px)';
-            tale0.style.backgroundImage = "url('imgs/closedChest.png')";
-            tale1.style.backgroundImage = "url('imgs/closedChest.png')";
+            tale0.style.backgroundImage = "url('../imgs/closedChest.png')";
+            tale1.style.backgroundImage = "url('../imgs/closedChest.png')";
         }, 1000);
 
 
@@ -194,16 +194,16 @@ tale.forEach(tale => {
     tale.addEventListener('click',  () => {
         if ((Math.floor(Math.random() < .4))) { // <------ .4 = 40% to lose
 
-            tale0.style.backgroundImage = "url('imgs/goldChest.png')";
-            tale1.style.backgroundImage = "url('imgs/goldChest.png')";
-            tale.style.backgroundImage = "url('imgs/emptyChest.png')";
+            tale0.style.backgroundImage = "url('../imgs/goldChest.png')";
+            tale1.style.backgroundImage = "url('../imgs/goldChest.png')";
+            tale.style.backgroundImage = "url('../imgs/emptyChest.png')";
             logHistory('Pirates', `-${depValue}`);
             handleGameOver('you lost');
             handleReset();
         }else{
-            tale0.style.backgroundImage = "url('imgs/emptyChest.png')";
-            tale1.style.backgroundImage = "url('imgs/emptyChest.png')";
-            tale.style.backgroundImage = "url('imgs/goldChest.png')";
+            tale0.style.backgroundImage = "url('../imgs/emptyChest.png')";
+            tale1.style.backgroundImage = "url('../imgs/emptyChest.png')";
+            tale.style.backgroundImage = "url('../imgs/goldChest.png')";
             handleNextRound();
         }
     });
