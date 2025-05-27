@@ -5,7 +5,7 @@ import {
    playSound,
    logHistory,
    getCurrentUser,
-  } from './mutualCode.js';
+  } from '../mutualCode.js';
 const balance = document.querySelector('.balance');
 
 
