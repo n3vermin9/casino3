@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Sans:wght@700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 html {
 box-sizing: border-box;
 font-size: 16px;
@@ -6,7 +6,7 @@ height: 100vh;
 }
 *, *:before, *:after {
 box-sizing: inherit;
-font-family: 'Roboto Sans', sans-serif;
+font-family: "Poppins", sans-serif;
 font-weight: 700;
 }
 body, h1, h2, h3, h4, h5, h6, p, ol, ul {
@@ -113,7 +113,7 @@ html, body {
   width: fit-content;
   text-wrap: nowrap;
   font-size: 14px;
-  font-weight: 100;
+  font-weight: 700;
   height: 60px;
   border-radius: 5px;
   border: 1px solid #333;

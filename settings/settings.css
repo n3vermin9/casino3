@@ -84,7 +84,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 300;
+  font-weight: 400;
   transition: opacity .2s ease;
 }
 
@@ -100,7 +100,7 @@ body {
   width: fit-content;
   text-wrap: nowrap;
   font-size: 14px;
-  font-weight: 100;
+  font-weight: 700;
   height: 60px;
   border-radius: 5px;
   border: 1px solid #333;

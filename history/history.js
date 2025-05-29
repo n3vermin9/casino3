@@ -43,8 +43,8 @@ function createCard(name, amount, time) {
     moneyTitle.style.color = 'red'
     triangle.style.transform = 'rotate(180deg)'
   } else {
-    triangle.style.color = 'green'
-    moneyTitle.style.color = 'green'
+    triangle.style.color = '#7FFF00'
+    moneyTitle.style.color = '#7FFF00'
   }
   card.appendChild(triangle)
   card.appendChild(title)

@@ -76,7 +76,6 @@ function handleReset() {
         createCoefs(coefsArr);
         probablyWin.style.opacity = 0;
         probablyWin.innerText = 0;
-==
     }, 3000);
 }
 
@@ -128,7 +127,7 @@ btnStop.addEventListener('click', () => {
         setBalance(parseInt(balance.innerText) + winnings); // Add integer winnings
         updateBalance();
         logHistory('Slots', `+${winnings}`);
-        handleGameOver(`$${winnings}`);
+        handleGameOver(`you won $${winnings}`);
         handleReset();
     }
 });
@@ -148,7 +147,7 @@ function handleNextRound() {
     }
 
     if (currentCoef == coefsArr.length) {
-        handleGameOver((`$${Math.floor(depValue * 11)}`));
+        handleGameOver((`you won $${Math.floor(depValue * 11)}`));
         const winnings = Math.floor(depValue * 11);
         setBalance(parseInt(balance.innerText) + winnings);
         updateBalance();

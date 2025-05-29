@@ -51,58 +51,6 @@ const payouts = {
 
 let isPayoutInfoActive = false
 
-function handleModal2(result) {
-  setTimeout(() => {
-    const modal = document.createElement('div');
-    modal.style.cssText = `
-      position: fixed;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2000;
-      background: #000;
-      overflow-y: auto;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE/Edge */
-      border-radius: 10px;
-      border: 1px solid #333;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      max-height: 0;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity .3s ease, visibility .3s ease, max-height .2s ease;
-    `;
-    
-    modal.innerHTML = result;
-    allBlock.appendChild(modal);
-    
-    // Trigger the animation
-    setTimeout(() => {
-      modal.style.maxHeight = '500px';
-      modal.style.visibility = 'visible';
-      modal.style.opacity = '1';
-    }, 10);
-    
-    // Auto-close after 3 seconds
-    setTimeout(() => {
-      modal.style.maxHeight = '0';
-      modal.style.visibility = 'hidden';
-      modal.style.opacity = '0';
-      setTimeout(() => {
-        if (modal.parentNode) {
-          modal.parentNode.removeChild(modal);
-        }
-      }, 300);
-    }, 3000);
-  }, 1000);
-}
-
 function showPayoutInfo() {
   btnInfo.style.display = 'none';
   
@@ -138,6 +86,9 @@ function showPayoutInfo() {
     transition: opacity .3s ease, visibility .3s ease, max-height .2s ease;
     overflow-y: auto;
   `;
+  if (window.innerWidth > 768) {
+    modal.style.width = '550px'
+  }
 
 
   modal.style.scrollbarWidth = 'none';
@@ -194,7 +145,7 @@ function showPayoutInfo() {
     // Create details
     const details = document.createElement('div');
     details.innerHTML = `
-      <h4 style="margin: 0 0 5px 0; color:rgb(255, 255, 255);">${item.name}</h3>
+      <h4 style="margin: 0 0 5px 0; color:rgb(255, 255, 255);">${item.name}</h4>
       <p style="margin: 2px 0; font-size: 13px;">Payout: x${item.multiplier}</p>
       <p style="margin: 2px 0; font-size: 13px;">Probability: ${item.probability}</p>
     `;
@@ -464,7 +415,7 @@ function handleStart() {
                   currentStoppedColumn = 2;
                   setTimeout(() => {
                       if (!checkWin()) {
-                          handleGameOver('Try again!');
+                          handleGameOver('you lost');
                           logHistory('Slots', `-${depValue}`);
                       }
                       setTimeout(handleReset, 1000);

@@ -30,7 +30,7 @@ let coefInterval;
 let ghostInterval;
 let currentPosition = 0;
 const maxHeight = 300;
-const ghostSpeed = .4;
+const ghostSpeed = .2;
 const baseCrashChance = 0.003;
 let hasCrashed = false;
 let stopClicked = false;
@@ -127,7 +127,7 @@ function calculateWinOrLose() {
         updateBalance();
         handleGhostWin();
         logHistory('Ghost Crush', `+${winnings}`)
-        return `win $${winnings}`;
+        return `you won $${winnings}`;
     }
     
     // If we got here, it must be a crash
@@ -162,7 +162,7 @@ function updateGhostPosition() {
         clearInterval(coefInterval);
         logHistory('Ghost Crush', `-${depValue}`);
         handleGhostLost();
-        handleGameOver(`lost $${depValue}`);
+        handleGameOver(`you lost`);
         handleReset();
         return;
     }
