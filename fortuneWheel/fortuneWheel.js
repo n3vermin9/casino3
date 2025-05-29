@@ -38,10 +38,8 @@ function handleReset() {
       handleInputAppear();
       if (parseInt(input.value) > parseInt(balance.innerText)) {
         input.value = '';
-      }
-      input.focus()
-      if (input.value > balance.innerText) {
-        input.value = '';
+      } else {
+        input.focus()
       }
   }, 3000);
 }

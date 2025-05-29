@@ -366,9 +366,9 @@ function handleModal(result) {
 function handleReset() {
     input.style.display = 'block';
     btnDep.style.display = 'block';
-    if (input.value > balance.innerText) {
+      if (parseInt(input.value) > parseInt(balance.innerText)) {
         input.value = '';
-    }
+      }
     resetAnimationState();
 }
 
@@ -379,7 +379,9 @@ function handleGameOver(text) {
     setTimeout(() => {
         allBlock.style.display = 'none';
         isGameOver = false;
+      if (parseInt(input.value) < parseInt(balance.innerText)) {
         input.focus()
+      }
     }, 3000);
     handleModal(text);
 }

@@ -47,9 +47,14 @@ body {
   height: fit-content;
   background: #000;
   background-size: 40px 40px;
-  background-image: radial-gradient(circle, #ffffff10 1px, rgba(0, 0, 0, 0) 1px);
+  background-image: radial-gradient(circle, #ffffff30 1px, rgba(0, 0, 0, 0) 1px);
   opacity: 0;
   animation: fadeIn .2s ease-in forwards;
+}
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: hidden; /* Prevent vertical scrolling */
 }
 
 @keyframes fadeIn {

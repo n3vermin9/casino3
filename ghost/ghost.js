@@ -8,7 +8,7 @@ import {
   } from '../mutualCode.js';
 const balance = document.querySelector('.balance');
 
-
+const clouds = document.querySelector('.clouds');
 const ghost = document.querySelector('.ghost');
 const greenLine = document.querySelector('.green-line');
 const coefDiv = document.querySelector('.coef-div');
@@ -60,6 +60,7 @@ function handleModal(result) {
       }, 3000);
   }, 500);
 }
+ghost.style.backgroundImage = 'url("../imgs/ghostwin.png")';
 
 function handleReset() {
     setTimeout(() => {
@@ -68,6 +69,7 @@ function handleReset() {
 
         currentPosition = 0;
         ghost.style.bottom = '0px';
+        clouds.style.top = '0px';
         ghost.style.backgroundImage = 'url("../imgs/ghostwin.png")';
         ghost.style.transform = 'rotate(0deg)';
         greenLine.style.height = '0px';
@@ -84,10 +86,11 @@ function handleReset() {
         clearInterval(ghostInterval);
         hasCrashed = false;
         stopClicked = false;
-        if (parseInt(input.value) > parseInt(balance.innerText)) {
-          input.value = '';
-        }
+      if (parseInt(input.value) > parseInt(balance.innerText)) {
+        input.value = '';
+      } else {
         input.focus()
+      }
     }, 3000);
 }
 
@@ -177,6 +180,7 @@ function updateGhostPosition() {
         return;
     }
     
+    clouds.style.top = currentPosition / 2 + 'px';
     ghost.style.bottom = currentPosition + 'px';
     greenLine.style.height = currentPosition + 'px';
     coefDiv.style.bottom = currentPosition + 'px';

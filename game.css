@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Sans:wght@700&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -48,9 +48,14 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
     -ms-overflow-style: none;
     background: #000;
     background-size: 40px 40px;
-    background-image: radial-gradient(circle, #ffffff10 1px, rgba(0, 0, 0, 0) 1px);
+  background-image: radial-gradient(circle, #ffffff30 1px, rgba(0, 0, 0, 0) 1px);
   opacity: 0;
   animation: fadeIn .2s ease-in forwards;
+}
+
+html, body {
+  overflow-x: hidden;
+  overflow-y: hidden; /* Prevent vertical scrolling */
 }
 
 img {

@@ -68,13 +68,15 @@ function handleReset() {
         currentCoef = 0;
         handleInputAppear();
         coefs.innerHTML = '';
-        if (input.value > balance.innerText) {
-          input.value = '';
-        }
+      if (parseInt(input.value) > parseInt(balance.innerText)) {
+        input.value = '';
+      } else {
+        input.focus()
+      }
         createCoefs(coefsArr);
         probablyWin.style.opacity = 0;
         probablyWin.innerText = 0;
-        input.focus()
+==
     }, 3000);
 }
 

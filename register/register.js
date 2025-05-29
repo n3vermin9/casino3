@@ -72,7 +72,7 @@ btnLogin.addEventListener('click', () => {
     };
     localStorage.setItem(`${data.nick}_${data.pass}`, JSON.stringify(data));
 
-   window.location.href = window.location.origin + '/login/login.html';
+   window.location.href = window.location.origin + '../login/login.html';
   }
 });
 

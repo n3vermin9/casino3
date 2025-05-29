@@ -12,7 +12,7 @@
 
 .game-section {
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.205);
+  border: 1px solid rgba(255, 255, 255, 0.405);
   position: relative;
 }
 
@@ -101,7 +101,43 @@
 }
 
 .sub-ruler {
-  background: rgba(255, 255, 255, 0.205);
+  background: rgba(255, 255, 255, 0.405);
   width: 100%;
   height: 2px;
+}
+.cloud {
+    aspect-ratio: 1.8;
+    --g: radial-gradient(50% 50%, #000 98%, #0000) no-repeat;
+    mask: var(--g) 100% 100%/30% 60%,var(--g) 70% 0/50% 100%,var(--g) 0 100%/36% 68%,var(--g) 27% 18%/26% 40%,linear-gradient(#000 0 0) bottom/67% 58% no-repeat;
+    background: #ffffff;
+}
+
+.cloud1 {
+  height: 70px;
+  top: 30px;
+  position: absolute;
+  left: 30px;
+  z-index: 2;
+}
+.cloud2 {
+  height: 40px;
+  top: 30px;
+  position: absolute;
+  left: 230px;
+  opacity: 0.8;
+}
+.cloud3 {
+  height: 40px;
+  top: 34px;
+  position: absolute;
+  left: 100px;
+  background: #919191;
+}
+
+.clouds {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 120px;
 }
