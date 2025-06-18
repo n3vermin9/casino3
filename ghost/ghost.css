@@ -36,13 +36,13 @@
 
 @keyframes standing {
   0% {
-    bottom: 0;
+    transform: translateY(0px);
   }
   50% {
-    bottom: 8px;
+    transform: translateY(8px);
   }
   100% {
-    bottom: 0;
+    transform: translateY(0px);
   }
 }
 
@@ -74,18 +74,34 @@
   --line-color: red;
 }
 
-.coef-div {
+.ghost-info {
   position: absolute;
-  width: 100px;
+  min-width: 80px;
   height: 50px;
-  left: 70px;
-  bottom: 0;
-  transition: bottom var(--ghost-speed) cubic-bezier(.19,.4,.28,.31) forwards;
+  left: 90px;
+  bottom: 13px;
+  transform: translate(0px);
+  transition: transform var(--ghost-speed) cubic-bezier(.19,.4,.28,.31) forwards;
   color: white;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-items: center;
   font-size: 25px;
+}
+
+.coef-div {
+  height: 32px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.probably-win {
+  position: relative !important;
+  height: 17px !important;
+  width: 100% !important;
+  display: flex;
+  justify-content: left !important;
 }
 
 .vertical-ruler {

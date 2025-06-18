@@ -172,6 +172,7 @@ function handleNextRound() {
 
         setTimeout(() => {
             tale.style.transform = 'translateY(-600px)';
+            tale.style.border = '1px solid #00000030';
             tale0.style.backgroundImage = "url('../imgs/closedChest.png')";
             tale1.style.backgroundImage = "url('../imgs/closedChest.png')";
         }, 1000);
@@ -203,6 +204,7 @@ tale.forEach(tale => {
             tale0.style.backgroundImage = "url('../imgs/emptyChest.png')";
             tale1.style.backgroundImage = "url('../imgs/emptyChest.png')";
             tale.style.backgroundImage = "url('../imgs/goldChest.png')";
+            tale.style.border = '1px solid #00000090'
             handleNextRound();
         }
     });

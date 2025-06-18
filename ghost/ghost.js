@@ -18,7 +18,11 @@ const input = document.querySelector('.input-dep');
 const btnDep = document.querySelector('.btn-dep');
 const btnStop = document.querySelector('.btn-stop');
 
+const probablyWin = document.querySelector('.probably-win');
+
 const allBlock = document.querySelector('.all-block');
+
+const ghostInfo = document.querySelector('.ghost-info');
 
 
 let isGameOver = false;
@@ -58,7 +62,7 @@ function handleModal(result) {
         }
         isModalActive = false;
       }, 3000);
-  }, 500);
+  }, 200);
 }
 ghost.style.backgroundImage = 'url("../imgs/ghostwin.png")';
 
@@ -73,15 +77,17 @@ function handleReset() {
         ghost.style.backgroundImage = 'url("../imgs/ghostwin.png")';
         ghost.style.transform = 'rotate(0deg)';
         greenLine.style.height = '0px';
-        coefDiv.style.bottom = '0px';
+        ghostInfo.style.bottom = '13px';
         coefDiv.innerText = 'x1.00';
         coefDiv.style.color = 'white';
+        probablyWin.innerText = '0';
+        probablyWin.style.color = 'white';
         coefValue = 1;
         greenLine.classList.remove('lost');
         rulerHeight = 400;
         verticalRuler.style.height = rulerHeight + '%'
         ghost.classList.add('ghost-standing')
-        coefDiv.classList.add('ghost-standing')
+        ghostInfo.classList.add('ghost-standing')
         clearInterval(coefInterval);
         clearInterval(ghostInterval);
         hasCrashed = false;
@@ -141,6 +147,7 @@ function handleGhostLost() {
     ghost.style.transform = 'rotate(0deg)';
     greenLine.classList.add('lost');
     coefDiv.style.color = 'red';
+    probablyWin.style.color = 'red';
 }
 
 function handleGhostWin() {
@@ -183,13 +190,14 @@ function updateGhostPosition() {
     clouds.style.top = currentPosition / 2 + 'px';
     ghost.style.bottom = currentPosition + 'px';
     greenLine.style.height = currentPosition + 'px';
-    coefDiv.style.bottom = currentPosition + 'px';
+    ghostInfo.style.bottom = currentPosition + 'px';
     coefValue = 1 + (currentPosition / maxHeight) * 9;
     const formattedValue = coefValue.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
-    coefDiv.innerText = `x${formattedValue}`;   
+    coefDiv.innerText = `x${formattedValue}`;
+    probablyWin.innerText = Math.floor(depValue * formattedValue)
     verticalRuler.style.height = rulerHeight + '%'
     rulerHeight -= .5
 }
@@ -201,7 +209,7 @@ function startGhostRise() {
     ghost.style.backgroundImage = 'url("../imgs/ghost.png")';
     ghost.style.transform = 'rotate(-90deg)';
     ghost.classList.remove('ghost-standing')
-    coefDiv.classList.remove('ghost-standing')
+    ghostInfo.classList.remove('ghost-standing')
     coefDiv.style.color = '#82ff2f';
     depValue = parseInt(input.value);
 

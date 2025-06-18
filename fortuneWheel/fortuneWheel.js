@@ -80,64 +80,60 @@ input.addEventListener('input', function() {
   }
 });
 
+function wheelCase(multi, logMulti, balanceMulti) {
+  handleGameOver(`you won $${depValue * multi}`);
+  logHistory('Fortune wheel', `+${depValue * logMulti}`);
+  setBalance(parseInt(getBalance()) + depValue * balanceMulti);
+  updateBalance();                    
+}
+
 let isStarted = false
 
 btnDep.addEventListener('click', (event) => {
-    if (input.value && input.value !== '0') {
-        isStarted = true
-        let current = Math.floor(Math.random() * -345)
-        current -= 720
-        wheel.style.transform = `rotate(${current}deg)`;
-        current += 720
-        handleInputHide();
-        depValue = parseInt(input.value);
-        setBalance(parseInt(getBalance()) - depValue);
-        updateBalance();
-        
-        setTimeout(() => {
-            switch (true) {
-                case (current <= 14 && current >= -15):
-                    handleGameOver('money back');
-                    setBalance(parseInt(getBalance()) + depValue);
-                    updateBalance();
-                    break;
+  if (input.value && input.value !== '0') {
 
-                case (current <= -46 && current >= -75 || current <= -226 && current >= -255):
-                    handleGameOver(`you won $${depValue * 2}`);
-                    logHistory('Fortune wheel', `+${depValue}`);
-                    setBalance(parseInt(getBalance()) + depValue * 2);
-                    updateBalance();
-                    break;
-                    
-                case (current <= -105 && current >= -135):
-                    handleGameOver(`you won $${depValue * 4}`);
-                    logHistory('Fortune wheel', `+${depValue * 3}`);
-                    setBalance(parseInt(getBalance()) + depValue * 4);
-                    updateBalance();
-                    break;  
+    isStarted = true
+    let current = Math.floor(Math.random() * -345)
+    current -= 720
+    wheel.style.transform = `rotate(${current}deg)`;
+    current += 720
+    handleInputHide();
+    depValue = parseInt(input.value);
+    setBalance(parseInt(getBalance()) - depValue);
+    updateBalance();
+    
+    setTimeout(() => {
+      switch (true) {
+        case (current <= 14 && current >= -15):
+          handleGameOver('money back');
+          setBalance(parseInt(getBalance()) + depValue);
+          updateBalance();
+          break;
 
-                case (current <= -165 && current >= -195):
-                    handleGameOver(`you won $${depValue * 10}`);
-                    logHistory('Fortune wheel', `+${depValue * 9}`);
-                    setBalance(parseInt(getBalance()) + depValue * 10);
-                    updateBalance();
-                    break;
+        case (current <= -46 && current >= -75 || current <= -226 && current >= -255):
+          wheelCase(2, 1, 2)
+          break;
+            
+        case (current <= -105 && current >= -135):
+          wheelCase(4, 3, 4)
+          break;  
 
-                case (current <= -286 && current >= -315):
-                    handleGameOver(`you won $${depValue * 3}`);
-                    logHistory('Fortune wheel', `+${depValue * 2}`);
-                    setBalance(parseInt(getBalance()) + depValue * 3);
-                    updateBalance();
-                    break;
+        case (current <= -165 && current >= -195):
+          wheelCase(10, 9, 10)
+          break;
 
-                case (current <= -16 && current >= -45 || current <= -76 && current >= -104 || current <= -136 && current >= -164 || current <= -196 && current >= -225 || current <= -256 && current >= -285 || current <= -316 && current >= -345):
-                    handleGameOver('you lost');
-                    logHistory('Fortune wheel', `-${depValue}`);
-                    break; 
-            }
-            handleReset();
-            wheel.style.transform = `rotate(${0}deg)`;
-            input.style.visibility = 'visible';
-        }, 4000);
-    }
+        case (current <= -286 && current >= -315):
+          wheelCase(3, 2, 3)
+          break;
+
+        case (current <= -16 && current >= -45 || current <= -76 && current >= -104 || current <= -136 && current >= -164 || current <= -196 && current >= -225 || current <= -256 && current >= -285 || current <= -316 && current >= -345):
+          handleGameOver('you lost');
+          logHistory('Fortune wheel', `-${depValue}`);
+          break; 
+      }
+        handleReset();
+        wheel.style.transform = `rotate(${0}deg)`;
+        input.style.visibility = 'visible';
+    }, 4000);
+  }
 });
