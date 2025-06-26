@@ -26,7 +26,7 @@ body {
 
 .container-history {
   height: fit-content;
-  max-width: 1200px;
+  max-width: 600px;
   margin: 120px auto 0 auto;
   display: flex;
   flex-direction: column-reverse;
@@ -34,6 +34,8 @@ body {
   align-items: center;
   padding: 40px;
   gap: 10px;
+  position: relative;
+  /* border: 1px solid red; */
 }
 
 .card {
@@ -97,4 +99,105 @@ body {
 
 .card-time:hover {
   opacity: .6;
+}
+
+.date-title {
+  width: 100%;
+  color: #fff;
+  right: 0;
+  height: 70px;
+  display: flex;
+  align-items: flex-end;
+  font-size: 13px;
+}
+
+.display-income {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 65px;
+  right: 40px;
+  background: #000;
+  border: 1px solid #222;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background .1s ease;
+}
+
+.display-income > svg {
+  width: 17px;
+}
+
+.display-games {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 65px;
+  right: 90px;
+  background: #000;
+  border: 1px solid #222;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background .1s ease;
+}
+
+.display-games > svg {
+  width: 22px;
+}
+
+.games-div {
+  width: 200px;
+  max-height: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  right: 89px;
+  top: 110px;
+  z-index: 2000;
+  visibility: hidden;
+  opacity: 0;
+  background: #000;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  /* border: 1px solid #333; */
+  box-shadow: 0 0 7px 2px #ffffff21;
+  transition: opacity .3s ease, visibility .3s ease, max-height .2s ease;
+}
+
+.games-div.show {
+  visibility: visible;
+  opacity: 1;
+  width: 200px;
+  max-height: 500px;
+}
+
+.games-div > * {
+  font-size: 17px;
+  border: 1px solid #222;
+  height: 40px;
+  display: flex;
+  /* justify-content: center; */
+  padding-left: 17px;
+  align-items: center;
+  width: 100%;
+  transition: background .1s ease;
+}
+
+.display-income:hover {
+  background: #1d1d1d;
+}
+
+.display-games:hover {
+  background: #1d1d1d;
+}
+
+.games-div > *:hover {
+  background: #0a0a0a;
 }
