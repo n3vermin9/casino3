@@ -77,4 +77,62 @@ export function logHistory(gameName, amount) {
     updateUserData({ history: updatedHistory });
 }
 
+export let miniBtnsDiv
+
+export function createDepBtns(elem1, elem2) {
+  miniBtnsDiv = document.createElement('div')
+  miniBtnsDiv.classList.add('mini-btns-div')
+
+  let btnDepMin = document.createElement('button')
+  btnDepMin.classList.add('mini-btns-dep', 'btn-dep-min')
+  btnDepMin.innerText = 'min'
+  miniBtnsDiv.appendChild(btnDepMin)
+
+  let btnDepSub = document.createElement('button')
+  btnDepSub.classList.add('mini-btns-dep', 'btn-dep-sub')
+  btnDepSub.innerText = '/2'
+  miniBtnsDiv.appendChild(btnDepSub)
+  
+  let btnDepMulti = document.createElement('button')
+  btnDepMulti.classList.add('mini-btns-dep', 'btn-dep-multi')
+  btnDepMulti.innerText = 'x2'
+  miniBtnsDiv.appendChild(btnDepMulti)
+
+  let btnDepMax = document.createElement('button')
+  btnDepMax.classList.add('mini-btns-dep', 'btn-dep-max')
+  btnDepMax.innerText = 'max'
+  miniBtnsDiv.appendChild(btnDepMax)
+
+  btnDepMin.addEventListener('click', () => {
+    if (elem2.innerText > 0) {
+      elem1.value = 1
+    }
+  });
+  
+  btnDepSub.addEventListener('click', () => {
+    if (elem1.value && elem1.value > 1) {
+      elem1.value = parseInt(elem1.value / 2)
+    }
+  });
+
+  btnDepMulti.addEventListener('click', () => {
+    if (elem1.value && parseInt(elem1.value) < parseInt(elem2.innerText)) {
+      elem1.value = parseInt(elem1.value * 2)
+    }
+    if (elem1.value && parseInt(elem1.value) > parseInt(elem2.innerText)) {
+      elem1.value = parseInt(elem2.innerText)
+    }
+  });
+
+  btnDepMax.addEventListener('click', () => {
+    if (elem2.innerText > 0) {
+      elem1.value = parseInt(elem2.innerText)
+    }
+  });
+
+  
+  const depSection = document.querySelector('.dep-section');
+  depSection.appendChild(miniBtnsDiv)
+}
+
 updateBalance()

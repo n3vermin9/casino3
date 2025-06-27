@@ -6,6 +6,8 @@ import {
    getCurrentUser,
    updateUserData,
    redirectUser,
+   createDepBtns,
+   miniBtnsDiv,
   } from '../mutualCode.js';
 
 const balance = document.querySelector('.balance');
@@ -203,6 +205,8 @@ const spinParams = {
     bounceDelay: 50
 };
 
+createDepBtns(input, balance)
+
 function getRandomEmoji() {
     const random = Math.random();
     let cumulativeProbability = 0;
@@ -317,6 +321,7 @@ function handleModal(result) {
 function handleReset() {
     input.style.display = 'block';
     btnDep.style.display = 'block';
+    miniBtnsDiv.classList.toggle('hidden')
       if (parseInt(input.value) > parseInt(balance.innerText)) {
         input.value = '';
       }
@@ -393,6 +398,7 @@ function handleStart() {
     resetAnimationState();
     input.style.display = 'none';
     btnDep.style.display = 'none';
+    miniBtnsDiv.classList.toggle('hidden')
     
     // Initialize all slots with random emojis
     columns.forEach(column => {

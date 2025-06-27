@@ -5,6 +5,8 @@ import {
    logHistory,
    getCurrentUser,
    redirectUser,
+   createDepBtns,
+   miniBtnsDiv,
   } from '../mutualCode.js';
 const balance = document.querySelector('.balance');
 
@@ -64,6 +66,9 @@ function handleModal(result) {
       }, 3000);
   }, 200);
 }
+
+createDepBtns(input, balance)
+
 ghost.style.backgroundImage = 'url("../imgs/ghostwin.png")';
 
 function handleReset() {
@@ -117,12 +122,14 @@ function handleInputHide() {
     input.style.display = 'none';
     btnDep.style.display = 'none';
     btnStop.style.display = 'block';
+    miniBtnsDiv.classList.toggle('hidden')
 }
 
 function handleInputAppear() {
     input.style.display = 'block';
     btnDep.style.display = 'block';
     btnStop.style.display = 'none';
+    miniBtnsDiv.classList.toggle('hidden')
 }
 
 function calculateWinOrLose() {

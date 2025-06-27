@@ -167,7 +167,8 @@ body {
   border-radius: 10px;
   overflow: hidden;
   /* border: 1px solid #333; */
-  box-shadow: 0 0 7px 2px #ffffff21;
+  box-shadow: 0 0 7px 2px #ffffff11;
+  border: 1px solid #ffffff1e;
   transition: opacity .3s ease, visibility .3s ease, max-height .2s ease;
 }
 

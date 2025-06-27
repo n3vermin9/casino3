@@ -5,6 +5,8 @@ import {
    logHistory,
    getCurrentUser,
    loginModalAppear,
+   createDepBtns,
+   miniBtnsDiv,
   } from '../mutualCode.js';
 
 const balance = document.querySelector('.balance');
@@ -51,6 +53,8 @@ function createCoefs(arr) {
         coefs.appendChild(coefBlock);
     }
 }
+
+createDepBtns(input, balance)
 
 function handleModal(result) {
     const modal = document.createElement('div');
@@ -99,12 +103,14 @@ function handleInputHide() {
     btnDep.style.display = 'none';
     btnStop.style.display = 'block';
     gameBlock.style.display = 'none';
-}
-function handleInputAppear() {
+    miniBtnsDiv.classList.toggle('hidden')
+  }
+  function handleInputAppear() {
     input.style.display = 'block';
     btnDep.style.display = 'block';
     btnStop.style.display = 'none';
     gameBlock.style.display = 'block';
+    miniBtnsDiv.classList.toggle('hidden')
 }
 
 btnDep.addEventListener('click', () => {

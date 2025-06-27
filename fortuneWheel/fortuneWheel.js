@@ -4,6 +4,8 @@ import {
    setBalance,
    logHistory,
    getCurrentUser,
+   createDepBtns,
+   miniBtnsDiv,
   } from '../mutualCode.js';
 
 const balance = document.querySelector('.balance');
@@ -29,6 +31,8 @@ function handleModal(result) {
   modal.innerText = result;
   allBlock.appendChild(modal);
 }
+
+createDepBtns(input, balance)
 
 
 function handleReset() {
@@ -63,12 +67,14 @@ function handleInputHide() {
   btnDep.style.display = 'none';
   // btnStop.style.display = 'block';
   gameBlock.style.display = 'none';
+  miniBtnsDiv.classList.toggle('hidden')
 }
 function handleInputAppear() {
   input.style.display = 'block';
   btnDep.style.display = 'block';
   // btnStop.style.display = 'none';
   gameBlock.style.display = 'block';
+  miniBtnsDiv.classList.toggle('hidden')
 }
 
 input.addEventListener('input', function() {

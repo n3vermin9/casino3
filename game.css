@@ -122,12 +122,13 @@ img {
   /* nav */
 
 .container {
-  height: 500px;
+  height: 550px;
   margin-top: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* border: 1px solid red; */
 }
 
 .game-section {
@@ -144,23 +145,27 @@ img {
 
 .dep-section {
   width: 400px;
-  height: 100px;
+  height: 150px;
   padding: 20px;
   gap: 10px;
+  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: last baseline;
+  /* border: 1px solid red; */
 }
 
 .input-dep {
   width: 200px;
   height: 50px;
   border: none;
+  /* border: 1px solid red; */
   background: #111;
   outline-style: none;
   font-size: 30px;
   color: #fff;
   padding-left: 12px;
+  line-height: 50px;
 }
 
 .input-dep::placeholder {
@@ -177,6 +182,8 @@ img {
   color: #fff;
   padding-left: 10px;
   border: none;
+  /* border: 1px solid red; */
+  line-height: 50px;
 }
 
 .btn-stop {
@@ -315,4 +322,43 @@ button {
     transform: scale(1.2);
     height: 600px;
   }
+}
+
+.mini-btns-div {
+  position: absolute;
+  /* border: 1px solid red; */
+  top: 16px;
+  width: 290px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.mini-btns-div > * {
+  flex: 1;
+  height: 100%;
+  border: none;
+  background: #333;
+  outline-style: none;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+  border-radius: 4px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: background .2s ease;
+}
+
+.mini-btns-div > *:hover {
+  background: #555;
+}
+
+.mini-btns-div.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Disables clicks */
 }
