@@ -7,6 +7,7 @@ import {
    loginModalAppear,
    createDepBtns,
    miniBtnsDiv,
+   handleModal,
   } from '../mutualCode.js';
 
 const balance = document.querySelector('.balance');
@@ -22,7 +23,6 @@ const btnDep = document.querySelector('.btn-dep');
 const btnStop = document.querySelector('.btn-stop');
 
 const gameBlock = document.querySelector('.game-block');
-const allBlock = document.querySelector('.all-block');
 
 const probablyWin = document.querySelector('.probably-win');
 
@@ -56,13 +56,6 @@ function createCoefs(arr) {
 
 createDepBtns(input, balance)
 
-function handleModal(result) {
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
-    modal.innerText = result;
-    allBlock.appendChild(modal);
-}
-
 
 function handleReset() {
     setTimeout(() => {
@@ -80,23 +73,9 @@ function handleReset() {
         createCoefs(coefsArr);
         probablyWin.style.opacity = 0;
         probablyWin.innerText = 0;
-    }, 3000);
+    }, 2000);
 }
 
-function handleGameOver(text) {
-    allBlock.innerHTML = '';
-
-    allBlock.style.display = 'flex';
-    isGameOver = true;
-
-    setTimeout(() => {
-        allBlock.style.display = 'none';
-        isGameOver = false;
-    }, 3000);
-
-    handleModal(text);
-
-}
 
 function handleInputHide() {
     input.style.display = 'none';
@@ -126,14 +105,14 @@ btnDep.addEventListener('click', () => {
 });
 btnStop.addEventListener('click', () => {
   if (currentCoef == 0) {
-      loginModalAppear('Pick between two')
+      loginModalAppear('Make a choise')
       }
     if (currentCoef >= 1) {
         const winnings = Math.floor(depValue * coefsArr[currentCoef - 1]); // Calculate winnings as integer
         setBalance(parseInt(balance.innerText) + winnings); // Add integer winnings
         updateBalance();
         logHistory('Slots', `+${winnings}`);
-        handleGameOver(`you won $${winnings}`);
+        handleModal(`you won $${winnings}`);
         handleReset();
     }
 });
@@ -153,7 +132,7 @@ function handleNextRound() {
     }
 
     if (currentCoef == coefsArr.length) {
-        handleGameOver((`you won $${Math.floor(depValue * 11)}`));
+        handleModal((`you won $${Math.floor(depValue * 11)}`));
         const winnings = Math.floor(depValue * 11);
         setBalance(parseInt(balance.innerText) + winnings);
         updateBalance();
@@ -204,7 +183,7 @@ tale.forEach(tale => {
             tale1.style.backgroundImage = "url('../imgs/goldChest.png')";
             tale.style.backgroundImage = "url('../imgs/emptyChest.png')";
             logHistory('Pirates', `-${depValue}`);
-            handleGameOver('you lost');
+            handleModal('you lost');
             handleReset();
         }else{
             tale0.style.backgroundImage = "url('../imgs/emptyChest.png')";

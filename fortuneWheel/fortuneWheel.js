@@ -6,6 +6,7 @@ import {
    getCurrentUser,
    createDepBtns,
    miniBtnsDiv,
+   handleModal,
   } from '../mutualCode.js';
 
 const balance = document.querySelector('.balance');
@@ -15,7 +16,6 @@ const input = document.querySelector('.input-dep');
 const btnDep = document.querySelector('.btn-dep');
 
 const gameBlock = document.querySelector('.game-block');
-const allBlock = document.querySelector('.all-block');
 
 const wheel = document.querySelector('.wheel')
 
@@ -24,13 +24,6 @@ let isGameOver = false;
 let depValue = 0;
 
 input.focus()
-
-function handleModal(result) {
-  const modal = document.createElement('div');
-  modal.classList.add('modal');
-  modal.innerText = result;
-  allBlock.appendChild(modal);
-}
 
 createDepBtns(input, balance)
 
@@ -45,21 +38,7 @@ function handleReset() {
       } else {
         input.focus()
       }
-  }, 3000);
-}
-
-function handleGameOver(text) {
-  allBlock.innerHTML = '';
-
-  allBlock.style.display = 'flex';
-  isGameOver = true;
-
-  setTimeout(() => {
-      allBlock.style.display = 'none';
-      isGameOver = false;
-  }, 3000);
-
-  handleModal(text);
+  }, 2300);
 }
 
 function handleInputHide() {
@@ -87,7 +66,7 @@ input.addEventListener('input', function() {
 });
 
 function wheelCase(multi, logMulti, balanceMulti) {
-  handleGameOver(`you won $${depValue * multi}`);
+  handleModal(`you won $${depValue * multi}`);
   logHistory('Fortune wheel', `+${depValue * logMulti}`);
   setBalance(parseInt(getBalance()) + depValue * balanceMulti);
   updateBalance();                    
@@ -111,7 +90,7 @@ btnDep.addEventListener('click', (event) => {
     setTimeout(() => {
       switch (true) {
         case (current <= 14 && current >= -15):
-          handleGameOver('money back');
+          handleModal('money back');
           setBalance(parseInt(getBalance()) + depValue);
           updateBalance();
           break;
@@ -133,7 +112,7 @@ btnDep.addEventListener('click', (event) => {
           break;
 
         case (current <= -16 && current >= -45 || current <= -76 && current >= -104 || current <= -136 && current >= -164 || current <= -196 && current >= -225 || current <= -256 && current >= -285 || current <= -316 && current >= -345):
-          handleGameOver('you lost');
+          handleModal('you lost');
           logHistory('Fortune wheel', `-${depValue}`);
           break; 
       }

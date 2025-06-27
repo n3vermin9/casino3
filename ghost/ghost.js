@@ -7,6 +7,7 @@ import {
    redirectUser,
    createDepBtns,
    miniBtnsDiv,
+   handleModal,
   } from '../mutualCode.js';
 const balance = document.querySelector('.balance');
 
@@ -21,8 +22,6 @@ const btnDep = document.querySelector('.btn-dep');
 const btnStop = document.querySelector('.btn-stop');
 
 const probablyWin = document.querySelector('.probably-win');
-
-const allBlock = document.querySelector('.all-block');
 
 const ghostInfo = document.querySelector('.ghost-info');
 
@@ -42,30 +41,11 @@ let hasCrashed = false;
 let stopClicked = false;
 let rulerHeight = 400;
 
-let isModalActive = false;
 
 input.focus()
 
 redirectUser()
 updateBalance()
-
-function handleModal(result) {
-  isModalActive = true;
-  setTimeout(() => {
-      const modal = document.createElement('div');
-      modal.classList.add('modal');
-      modal.innerText = result;
-      allBlock.appendChild(modal);
-      
-      // Remove modal after 3 seconds
-      setTimeout(() => {
-        if (modal.parentNode) {
-          modal.parentNode.removeChild(modal);
-        }
-        isModalActive = false;
-      }, 3000);
-  }, 200);
-}
 
 createDepBtns(input, balance)
 
@@ -102,21 +82,9 @@ function handleReset() {
       } else {
         input.focus()
       }
-    }, 3000);
+    }, 2000);
 }
 
-function handleGameOver(text) {
-    allBlock.innerHTML = '';
-    allBlock.style.display = 'flex';
-    isGameOver = true;
-
-    setTimeout(() => {
-        allBlock.style.display = 'none';
-        isGameOver = false;
-    }, 3000);
-
-    handleModal(text);
-}
 
 function handleInputHide() {
     input.style.display = 'none';
@@ -176,7 +144,7 @@ function updateGhostPosition() {
         clearInterval(coefInterval);
         logHistory('Ghost Crush', `-${depValue}`);
         handleGhostLost();
-        handleGameOver(`you lost`);
+        handleModal(`you lost`);
         handleReset();
         return;
     }
@@ -189,7 +157,7 @@ function updateGhostPosition() {
         clearInterval(ghostInterval);
         clearInterval(coefInterval);
         const result = calculateWinOrLose();
-        handleGameOver(result);
+        handleModal(result);
         handleReset();
         return;
     }
@@ -210,7 +178,6 @@ function updateGhostPosition() {
 }
 
 function startGhostRise() {
-    if (isModalActive) return;
     
     handleInputHide();
     ghost.style.backgroundImage = 'url("../imgs/ghost.png")';
@@ -237,17 +204,12 @@ btnStop.addEventListener('click', () => {
         clearInterval(ghostInterval);
         clearInterval(coefInterval);
         const result = calculateWinOrLose();
-        handleGameOver(result);
+        handleModal(result);
         handleReset();
     }
 });
 
 document.addEventListener('keydown', (e) => {
-    if (isModalActive) {
-        e.preventDefault();
-        return;
-    }
-    
     if (e.key === 'Enter') {
         if (btnDep.style.display !== 'none' && input.value && input.value !== '0') {
             startGhostRise();
@@ -257,7 +219,7 @@ document.addEventListener('keydown', (e) => {
             clearInterval(ghostInterval);
             clearInterval(coefInterval);
             const result = calculateWinOrLose();
-            handleGameOver(result);
+            handleModal(result);
             handleReset();
         }
     }

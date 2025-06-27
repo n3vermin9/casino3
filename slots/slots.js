@@ -8,17 +8,16 @@ import {
    redirectUser,
    createDepBtns,
    miniBtnsDiv,
+   handleModal,
   } from '../mutualCode.js';
 
 const balance = document.querySelector('.balance');
 const input = document.querySelector('.input-dep');
 const btnDep = document.querySelector('.btn-dep');
-const allBlock = document.querySelector('.all-block');
 const btnInfo = document.querySelector('.btn-info');
 
 let isGameOver = false;
 let depValue = 0;
-let isStarted = false;
 let animationRunning = false;
 
 input.focus()
@@ -309,15 +308,6 @@ function resetAnimationState() {
     });
 }
 
-function handleModal(result) {
-  setTimeout(() => {
-        const modal = document.createElement('div');
-        modal.classList.add('modal');
-        modal.innerText = result;
-        allBlock.appendChild(modal);
-  }, 1000);
-}
-
 function handleReset() {
     input.style.display = 'block';
     btnDep.style.display = 'block';
@@ -326,20 +316,6 @@ function handleReset() {
         input.value = '';
       }
     resetAnimationState();
-}
-
-function handleGameOver(text) {
-    allBlock.innerHTML = '';
-    allBlock.style.display = 'flex';
-    isGameOver = true;
-    setTimeout(() => {
-        allBlock.style.display = 'none';
-        isGameOver = false;
-      if (parseInt(input.value) < parseInt(balance.innerText)) {
-        input.focus()
-      }
-    }, 3000);
-    handleModal(text);
 }
 
 input.addEventListener('input', function() {
@@ -372,7 +348,7 @@ function checkWin() {
       
       if (!payout) {
           console.error("No payout found for:", emoji);
-          handleGameOver('No win this time!');
+          handleModal('No win this time!');
           return true;
       }
 
@@ -382,10 +358,10 @@ function checkWin() {
       if (winAmount > 0) {
           setBalance(parseInt(getBalance()) + winAmount);
           updateBalance();
-          handleGameOver(`You won ${winAmount}! (${multiplier}x)`);
+          handleModal(`You won ${winAmount}! (${multiplier}x)`);
           logHistory('Slots', `+${winAmount}`)
         } else {
-          handleGameOver('No win this time!');
+          handleModal('No win this time!');
         }
       return true;
   }
@@ -421,7 +397,7 @@ function handleStart() {
                   currentStoppedColumn = 2;
                   setTimeout(() => {
                       if (!checkWin()) {
-                          handleGameOver('you lost');
+                          handleModal('you lost');
                           logHistory('Slots', `-${depValue}`);
                       }
                       setTimeout(handleReset, 1000);
@@ -436,7 +412,6 @@ initializeSlots();
 
 btnDep.addEventListener('click', (event) => {
     if (input.value && input.value !== '0' && !animationRunning) {
-        isStarted = true;
         depValue = parseInt(input.value);
         setBalance(parseInt(getBalance()) - depValue);
         updateBalance();

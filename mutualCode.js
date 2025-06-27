@@ -135,4 +135,36 @@ export function createDepBtns(elem1, elem2) {
   depSection.appendChild(miniBtnsDiv)
 }
 
+export function handleModal(result) {
+  document.body.classList.add('modal-active');
+  document.body.style.overflow = 'hidden';
+
+  const overlay = document.createElement('div');
+  overlay.classList.add('modal-overlay');
+  document.body.appendChild(overlay);
+
+  const modal = document.createElement('div');
+  modal.classList.add('modal');
+  modal.textContent = result;
+  document.body.appendChild(modal);
+
+  void overlay.offsetWidth;
+  void modal.offsetWidth;
+
+  overlay.style.opacity = '1';
+  modal.style.opacity = '1';
+
+  setTimeout(() => {
+    overlay.style.opacity = '0';
+    modal.style.opacity = '0';
+
+    setTimeout(() => {
+      overlay.remove();
+      modal.remove();
+      document.body.style.overflow = '';
+      document.body.classList.remove('modal-active');
+    }, 200);
+  }, 2000);
+}
+
 updateBalance()
