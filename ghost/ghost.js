@@ -42,8 +42,6 @@ let stopClicked = false;
 let rulerHeight = 400;
 
 
-input.focus()
-
 redirectUser()
 updateBalance()
 
@@ -79,8 +77,6 @@ function handleReset() {
         stopClicked = false;
       if (parseInt(input.value) > parseInt(balance.innerText)) {
         input.value = '';
-      } else {
-        input.focus()
       }
     }, 2000);
 }
@@ -107,12 +103,12 @@ function calculateWinOrLose() {
         setBalance(parseInt(balance.innerText) + winnings);
         updateBalance();
         handleGhostWin();
-        logHistory('Ghost Crush', `+${winnings}`)
+        logHistory('Ghost Crash', `+${winnings}`)
         return `you won $${winnings}`;
     }
     
     // If we got here, it must be a crash
-    logHistory('Ghost Crush', `-${depValue}`);
+    logHistory('Ghost Crash', `-${depValue}`);
     handleGhostLost();
     return `lost $${depValue}`;
 }
@@ -142,7 +138,7 @@ function updateGhostPosition() {
         clearInterval(rulerInterval)
         clearInterval(ghostInterval);
         clearInterval(coefInterval);
-        logHistory('Ghost Crush', `-${depValue}`);
+        logHistory('Ghost Crash', `-${depValue}`);
         handleGhostLost();
         handleModal(`you lost`);
         handleReset();

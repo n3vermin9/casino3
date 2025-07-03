@@ -103,7 +103,7 @@ html, body {
   max-width: 400px;
   background: #000;
   border-radius: 10px;
-  padding: 40px 30px;
+  padding: 25px 30px;
   border: 1px solid #333;
   position: relative;
 }
@@ -221,13 +221,20 @@ html, body {
   width: 80%;
 }
 
-#togglePassword {
+.checkbox {
   appearance: none;
   background: #000;
   accent-color: rgb(65, 65, 65);
   border: none;
-  width: 20%;
+  width: 10%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox > svg {
+  color: #fff !important;
 }
 
 @keyframes shake {

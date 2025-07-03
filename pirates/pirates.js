@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
     probablyWin.style.opacity = 0;
 });
 
-input.focus()
-
 let coefsArr = [1.5, 2, 3.1, 4.5, 6, 8, 11];
 
 function createCoefs(arr) {
@@ -67,8 +65,6 @@ function handleReset() {
         coefs.innerHTML = '';
       if (parseInt(input.value) > parseInt(balance.innerText)) {
         input.value = '';
-      } else {
-        input.focus()
       }
         createCoefs(coefsArr);
         probablyWin.style.opacity = 0;
@@ -111,7 +107,7 @@ btnStop.addEventListener('click', () => {
         const winnings = Math.floor(depValue * coefsArr[currentCoef - 1]); // Calculate winnings as integer
         setBalance(parseInt(balance.innerText) + winnings); // Add integer winnings
         updateBalance();
-        logHistory('Slots', `+${winnings}`);
+        logHistory('Tg Slots', `+${winnings}`);
         handleModal(`you won $${winnings}`);
         handleReset();
     }
@@ -136,7 +132,7 @@ function handleNextRound() {
         const winnings = Math.floor(depValue * 11);
         setBalance(parseInt(balance.innerText) + winnings);
         updateBalance();
-        logHistory('Slots', `+${depValue * 11}`);
+        logHistory('Tg Slots', `+${depValue * 11}`);
         handleReset();
     }
 

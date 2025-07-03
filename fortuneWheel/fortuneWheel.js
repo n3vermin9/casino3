@@ -23,8 +23,6 @@ let isGameOver = false;
 
 let depValue = 0;
 
-input.focus()
-
 createDepBtns(input, balance)
 
 
@@ -35,8 +33,6 @@ function handleReset() {
       handleInputAppear();
       if (parseInt(input.value) > parseInt(balance.innerText)) {
         input.value = '';
-      } else {
-        input.focus()
       }
   }, 2300);
 }

@@ -20,7 +20,6 @@ let isGameOver = false;
 let depValue = 0;
 let animationRunning = false;
 
-input.focus()
 redirectUser()
 
 const columns = [
@@ -359,7 +358,7 @@ function checkWin() {
           setBalance(parseInt(getBalance()) + winAmount);
           updateBalance();
           handleModal(`You won ${winAmount}! (${multiplier}x)`);
-          logHistory('Slots', `+${winAmount}`)
+          logHistory('Tg Slots', `+${winAmount}`)
         } else {
           handleModal('No win this time!');
         }
@@ -398,7 +397,7 @@ function handleStart() {
                   setTimeout(() => {
                       if (!checkWin()) {
                           handleModal('you lost');
-                          logHistory('Slots', `-${depValue}`);
+                          logHistory('Tg Slots', `-${depValue}`);
                       }
                       setTimeout(handleReset, 1000);
                   }, 300);

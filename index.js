@@ -9,7 +9,7 @@ import {
 
 import { gamesList } from "./gamesList.js";
 
-// DOM Elements
+const nav = document.querySelector('.nav');
 const balance = document.querySelector('.balance');
 const container = document.querySelector('.container');
 const btnAcc = document.querySelector('.btn-acc');
@@ -23,34 +23,48 @@ const modalSettings = document.querySelector('.modal-settings');
 const modalHistory = document.querySelector('.modal-history');
 const modalName = document.querySelector('.modal-name');
 
-// Initialize user state
+// test
+modalBalance.addEventListener('click', () => {
+  const data = {
+    nick: 'test',
+    pass: 'test000',
+    balance: 1000,
+    history: [
+      {game: 'Tg Slots', money: '+100', time: '19:25 04/02'},
+      {game: 'Tg Slots', money: '-100', time: '12:40 02/06'},
+      {game: 'Pirates', money: '+100', time: '13:53 08/03'},
+    ]
+  };
+  localStorage.setItem(`currentUser`, JSON.stringify(data));
+  location.reload();
+});
+// test
+
 function initializeUser() {
-    const currentUser = getCurrentUser(); // Get the current user
+    const currentUser = getCurrentUser();
     
     if (currentUser && currentUser.nick !== 'Guest') {
-        // User is logged in
+
         modalName.textContent = currentUser.nick;
         btnModalLogoutLink.textContent = 'Log out';
         updateBalance();
         
-        // Show user-specific elements
         btnBalanceAdd.style.display = '';
         modalHistory.style.display = '';
         modalSettings.style.display = '';
     } else {
-        // Guest user
         modalName.textContent = 'Guest';
         balance.textContent = '0';
         btnModalLogoutLink.textContent = 'Log in';
         
-        // Hide user-specific elements
         btnBalanceAdd.style.display = 'none';
         modalHistory.style.display = 'none';
         modalSettings.style.display = 'none';
     }
 }
 
-// Card creation function
+let cardElements = [];
+
 function createCard(image, name, link, shouldFilter) {
     const card = document.createElement('div');
     card.classList.add('card');
@@ -79,20 +93,26 @@ function createCard(image, name, link, shouldFilter) {
     btnLink.href = getCurrentUser().nick !== 'Guest' ? link : 'login/login.html';
     btnPlay.appendChild(btnLink);
 
+    cardElements.push(card);
+
     container.appendChild(card);
+
+    const index = cardElements.length - 1;
+    ScrollReveal().reveal(card, {
+        delay: 200 + (index * 100),
+        distance: '20px',
+        duration: 1000,
+        origin: index % 2 === 0 ? 'left' : 'right',
+    });
 }
 
-// Initialize the page
 function init() {
-    // Create game cards
     gamesList.forEach(game => {
         createCard(game.image, game.name, game.link, game.filter);
     });
 
-    // Set up user state
     initializeUser();
 
-    // Logout button handler
     let isModalLogout = false;
     btnModalLogout.addEventListener('click', () => {
         const user = getCurrentUser();
@@ -105,7 +125,6 @@ function init() {
         btnModalLogoutLink.style.color = 'red';
         
         if (isModalLogout) {
-            // Save user data before logging out
             localStorage.setItem(`${user.nick}_${user.pass}`, JSON.stringify({
                 nick: user.nick,
                 pass: user.pass,
@@ -114,13 +133,12 @@ function init() {
             }));
             
             localStorage.removeItem('currentUser');
-            window.location.reload(); // Refresh to show guest state
+            window.location.reload();
         }
         
         isModalLogout = true;
     });
 
-    // Account modal handlers
     btnAcc.addEventListener('click', (e) => {
         e.stopPropagation();
         accModal.classList.toggle('opened');
@@ -148,5 +166,11 @@ function init() {
     });
 }
 
-// Start the application when DOM is loaded
+ScrollReveal().reveal('.nav', {
+  delay: 200,
+  distance: '20px',
+  duration: 700,
+  origin: 'top'
+});
+
 document.addEventListener('DOMContentLoaded', init);
