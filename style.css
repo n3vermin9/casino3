@@ -57,6 +57,13 @@ body {
   background: #000;
   background-size: 40px 40px;
   background-image: radial-gradient(circle, #ffffff30 1px, rgba(0, 0, 0, 0) 1px);
+  opacity: 0;
+  animation: fadeIn .5s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* nav */
@@ -107,7 +114,6 @@ body {
 .container {
   /* border: 1px solid red; */
   height: fit-content;
-  min-height: 100vh;
   position: relative;
   max-width: 1200px;
   margin: 120px auto 0 auto; /* This centers horizontally */
@@ -118,7 +124,7 @@ body {
   padding: 40px;
   gap: 40px;
   opacity: 0;
-  animation: fadeIn 1s ease-in forwards;
+  animation: fadeIn .5s ease-in forwards;
 }
 
 @keyframes fadeIn {

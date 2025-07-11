@@ -6,7 +6,8 @@ html {
 }
 
 html, body {
-  overflow-x: hidden;
+  overflow-x: auto;
+  height: 100vh;
   width: 100%;
 }
   *, *:before, *:after {
@@ -151,7 +152,7 @@ img {
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: last baseline;
+  align-items: end;
   /* border: 1px solid red; */
 }
 
@@ -165,7 +166,6 @@ img {
   font-size: 30px;
   color: #fff;
   padding-left: 12px;
-  line-height: 50px;
 }
 
 .input-dep::placeholder {
@@ -187,7 +187,6 @@ img {
 }
 
 .btn-stop {
-  display: none;
   width: 280px;
   height: 50px;
   font-size: 27px;
@@ -196,6 +195,14 @@ img {
   color: #fff;
   border: none;
   cursor: crosshair;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  position: absolute;
+}
+
+.btn-stop.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Disables clicks */
 }
 
 button {
@@ -229,7 +236,7 @@ button {
   height: 110px;
   backdrop-filter: blur(7px); 
   border: 1px solid #ffffff10;
-  border-radius: 26px;
+  border-radius: 16px;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -241,6 +248,7 @@ button {
   transform: translate(-50%, -50%);
   z-index: 1000;
   pointer-events: auto;
+  filter: brightness(1) !important;
   opacity: 0;
   transition: opacity .2s ease, transform .2s ease;
 }
@@ -282,9 +290,9 @@ body.modal-active *:not(nav *, nav, .modal, .modal *) {
   transition: background .5s ease;
 }
 
-.coef-block::before {
+/* .coef-block::before {
   content: "x";
-}
+} */
 
 .probably-win {
   color: #fff;
@@ -381,5 +389,27 @@ body.modal-active *:not(nav *, nav, .modal, .modal *) {
 .mini-btns-div.hidden {
   opacity: 0;
   visibility: hidden;
-  pointer-events: none; /* Disables clicks */
+  pointer-events: none;
+}
+
+.input-dep.hidden, .btn-dep.hidden  {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.block-interactions {
+  pointer-events: none !important;
+  cursor: wait !important;
+  transition: filter .5s ease;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

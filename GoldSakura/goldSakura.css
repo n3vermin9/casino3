@@ -1,0 +1,146 @@
+.game-section {
+  /* border: 1px solid white; */
+}
+
+* {
+  /* border: 1px solid red; */
+}
+
+.tiles {
+  width: 90%;
+  height: 90%;
+  /* border: 1px solid #ffffff90; */
+  background: #141414;
+  border-radius: 7px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 5px;
+  gap: 5px;
+}
+
+.tile {
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  background: #2e2e2e;
+  border: 1px solid #474747a6;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 70%;
+  transition: background 0.1s ease;
+}
+
+.tile > * {
+  /* opacity: 0; */
+  transition: opacity 0.2s ease;
+}
+
+.tile:hover {
+  background: #414141;
+}
+
+.set-count {
+  position: absolute;
+  width: 170px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background: #fff; */
+  border-radius: 10px;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.set-count > * {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #fff;
+}
+
+.set-count-value {
+  font-size: 30px;
+}
+
+.set-count > button {
+  border: none;
+  font-size: 34px;
+  background: #fff;
+  transition: background 0.1s ease;
+}
+
+.set-count > input {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.set-count > button:hover {
+  background: #e7e7e7;
+}
+
+.set-count.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.probably-win {
+  /* border: 1px solid red; */
+  position: absolute !important;
+  left: 20px !important;
+  top: 0 !important;
+  width: 100px;
+  opacity: 1;
+  justify-content: left !important;
+  padding-left: 10px;
+}
+.coef-div {
+  /* border: 1px solid red; */
+  position: absolute !important;
+  right: 20px !important;
+  top: 0 !important;
+  width: 50px;
+  opacity: 1;
+  color: #fff;
+  justify-content: left !important;
+  transition: opacity .5s ease;
+}
+
+.probably-win.hidden, .coef-div.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.lottie {
+    width: 45px;
+    height: 45px;
+}
+.lottie-bad {
+    width: 45px;
+    height: 45px;
+}

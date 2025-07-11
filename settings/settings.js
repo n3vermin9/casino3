@@ -22,7 +22,6 @@ const textUsername = document.querySelector('.text-username');
 const usernameInput = document.querySelector('.input-username');
 
 
-// Initialize UI
 redirectUser()
 usernameInput.value = '';
 usernameInput.style.visibility = 'hidden';
@@ -84,7 +83,6 @@ function saveNewUsername(newUsername) {
         nick: newUsername
     };
     
-    // Update both currentUser and stored user data
     updateUserData({ nick: newUsername });
     localStorage.setItem(`currentUser`, JSON.stringify(updatedUser));
 

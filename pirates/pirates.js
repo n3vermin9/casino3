@@ -22,8 +22,6 @@ const input = document.querySelector('.input-dep');
 const btnDep = document.querySelector('.btn-dep');
 const btnStop = document.querySelector('.btn-stop');
 
-const gameBlock = document.querySelector('.game-block');
-
 const probablyWin = document.querySelector('.probably-win');
 
 const coefs = document.querySelector('.coefs');
@@ -59,7 +57,6 @@ function handleReset() {
     setTimeout(() => {
         tale0.style.backgroundImage = "url('../imgs/closedChest.png')";
         tale1.style.backgroundImage = "url('../imgs/closedChest.png')";
-        gameBlock.style.opacity = .1;
         currentCoef = 0;
         handleInputAppear();
         coefs.innerHTML = '';
@@ -72,19 +69,22 @@ function handleReset() {
     }, 2000);
 }
 
+btnStop.classList.add('hidden')
+tales.classList.add('block-interactions')
 
 function handleInputHide() {
-    input.style.display = 'none';
-    btnDep.style.display = 'none';
-    btnStop.style.display = 'block';
-    gameBlock.style.display = 'none';
+    input.classList.toggle('hidden')
+    btnDep.classList.toggle('hidden')
+    btnStop.classList.toggle('hidden')
+    tales.classList.remove('block-interactions')
     miniBtnsDiv.classList.toggle('hidden')
   }
-  function handleInputAppear() {
-    input.style.display = 'block';
-    btnDep.style.display = 'block';
-    btnStop.style.display = 'none';
-    gameBlock.style.display = 'block';
+
+function handleInputAppear() {
+    input.classList.toggle('hidden')
+    btnDep.classList.toggle('hidden')
+    btnStop.classList.toggle('hidden')
+    tales.classList.add('block-interactions')
     miniBtnsDiv.classList.toggle('hidden')
 }
 
@@ -101,7 +101,7 @@ btnDep.addEventListener('click', () => {
 });
 btnStop.addEventListener('click', () => {
   if (currentCoef == 0) {
-      loginModalAppear('Make a choise')
+      loginModalAppear('Make a choice')
       }
     if (currentCoef >= 1) {
         const winnings = Math.floor(depValue * coefsArr[currentCoef - 1]); // Calculate winnings as integer
@@ -140,11 +140,11 @@ function handleNextRound() {
     if (currentCoef != coefsArr.length) {
         res.style.background = '#888';
         currentCoef++;
-        probablyWin.innerText = Math.floor(depValue * coefsArr[currentCoef - 1]); // Display probable win as integer
+        probablyWin.innerText = Math.floor(depValue * coefsArr[currentCoef - 1]);
     }
 
     tale.forEach(tale => {
-        gameBlock.style.display = 'block';
+        tales.classList.add('block-interactions')
         tale.style.transform = 'translateY(200px)';
 
         setTimeout(() => {
@@ -165,7 +165,7 @@ function handleNextRound() {
 
         setTimeout(() => {
             tale.style.transform = 'translateY(0px)';
-            gameBlock.style.display = 'none';
+            tales.classList.remove('block-interactions')
         }, 1100);
 
     });

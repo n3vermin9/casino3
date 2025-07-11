@@ -3,10 +3,10 @@
 <head>
 <meta charset='UTF-8'>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel='stylesheet' href='pirates.css'>
+<link rel='stylesheet' href='goldSakura.css'>
 <link rel='stylesheet' href='../game.css'>
 <link rel='shortcut icon' href='#'>
-<title>Pirates</title>
+<title>Gold Sakura</title>
 </head>
 <body>
   <div class="nav">
@@ -21,13 +21,13 @@
   <div class="login-modal"></div>
   <div class="container">
     <div class="game-section">
-      <h1 class="probably-win"></h1>
-      <div class="coefs"></div>
-      <div class="tales">
-        <div class="tale tale0">
-        </div>
-        <div class="tale tale1">
-        </div>
+      <div class="probably-win"></div>
+      <div class="coef-div"></div>
+      <div class="tiles"></div>
+      <div class="set-count">
+        <button class="set-minus">-</button>
+        <input type="number" class="set-count-value">
+        <button class="set-plus">+</button>
       </div>
     </div>
     <div class="dep-section">
@@ -36,7 +36,8 @@
       <button class="btn-stop">stop</button>
     </div>
   </div>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <script type="module" src='../mutualCode.js'></script>
-<script type="module" src='pirates.js'></script>
+<script type="module" src='goldSakura.js'></script>
 </body>
 </html>

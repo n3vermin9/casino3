@@ -15,8 +15,6 @@ const balance = document.querySelector('.balance');
 const input = document.querySelector('.input-dep');
 const btnDep = document.querySelector('.btn-dep');
 
-const gameBlock = document.querySelector('.game-block');
-
 const wheel = document.querySelector('.wheel')
 
 let isGameOver = false;
@@ -28,7 +26,6 @@ createDepBtns(input, balance)
 
 function handleReset() {
   setTimeout(() => {
-      gameBlock.style.opacity = .1;
       // btnStop.style.background = '#333';
       handleInputAppear();
       if (parseInt(input.value) > parseInt(balance.innerText)) {
@@ -41,14 +38,12 @@ function handleInputHide() {
   input.style.display = 'none';
   btnDep.style.display = 'none';
   // btnStop.style.display = 'block';
-  gameBlock.style.display = 'none';
   miniBtnsDiv.classList.toggle('hidden')
 }
 function handleInputAppear() {
   input.style.display = 'block';
   btnDep.style.display = 'block';
   // btnStop.style.display = 'none';
-  gameBlock.style.display = 'block';
   miniBtnsDiv.classList.toggle('hidden')
 }
 

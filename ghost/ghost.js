@@ -45,13 +45,14 @@ let rulerHeight = 400;
 redirectUser()
 updateBalance()
 
+btnStop.classList.add('hidden')
+
 createDepBtns(input, balance)
 
 ghost.style.backgroundImage = 'url("../imgs/ghostwin.png")';
 
 function handleReset() {
     setTimeout(() => {
-        btnStop.style.background = '#333';
         handleInputAppear();
 
         currentPosition = 0;
@@ -83,16 +84,16 @@ function handleReset() {
 
 
 function handleInputHide() {
-    input.style.display = 'none';
-    btnDep.style.display = 'none';
-    btnStop.style.display = 'block';
+    input.classList.toggle('hidden')
+    btnDep.classList.toggle('hidden')
+    btnStop.classList.toggle('hidden')
     miniBtnsDiv.classList.toggle('hidden')
-}
+  }
 
 function handleInputAppear() {
-    input.style.display = 'block';
-    btnDep.style.display = 'block';
-    btnStop.style.display = 'none';
+    input.classList.toggle('hidden')
+    btnDep.classList.toggle('hidden')
+    btnStop.classList.toggle('hidden')
     miniBtnsDiv.classList.toggle('hidden')
 }
 
