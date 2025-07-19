@@ -1,6 +1,6 @@
 import { loginModalAppear } from '../mutualCode.js';
 
-const toggleButton = document.getElementById('togglePassword');
+const toggleButton = document.querySelector('.checkbox');
 const usernameInput = document.getElementById('username')
 const passwordInput = document.getElementById('password');
 const btnLogin = document.querySelector('.login-btn');

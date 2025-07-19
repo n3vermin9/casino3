@@ -115,7 +115,7 @@ function calculateWinOrLose() {
 }
 
 function handleGhostLost() {
-    ghost.style.backgroundImage = 'url("../imgs/ghostLost.png")';
+    ghost.style.backgroundImage = 'url("../imgs/ghostlost.png")';
     ghost.style.transform = 'rotate(0deg)';
     greenLine.classList.add('lost');
     coefDiv.style.color = 'red';
@@ -123,7 +123,7 @@ function handleGhostLost() {
 }
 
 function handleGhostWin() {
-    ghost.style.backgroundImage = 'url("../imgs/ghostWin.png")';
+    ghost.style.backgroundImage = 'url("../imgs/ghostwin.png")';
     ghost.style.transform = 'rotate(0deg)';
 }
 

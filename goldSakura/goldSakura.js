@@ -93,7 +93,7 @@ function createBadSakura(elem) {
   const lottiePlayer = document.createElement('lottie-player');
   lottiePlayer.classList.add('lottie-bad')
   
-  lottiePlayer.setAttribute('src', '../imgs/BadSakura.json');
+  lottiePlayer.setAttribute('src', '../imgs/badSakura.json');
   lottiePlayer.setAttribute('background', 'transparent');
   lottiePlayer.setAttribute('speed', '1');
   lottiePlayer.removeAttribute('loop');
