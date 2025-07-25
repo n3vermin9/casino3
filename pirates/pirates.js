@@ -179,7 +179,7 @@ tale.forEach(tale => {
             tale1.style.backgroundImage = "url('../imgs/goldChest.png')";
             tale.style.backgroundImage = "url('../imgs/emptyChest.png')";
             logHistory('Pirates', `-${depValue}`);
-            handleModal('you lost');
+            handleModal('You lost');
             handleReset();
         }else{
             tale0.style.backgroundImage = "url('../imgs/emptyChest.png')";

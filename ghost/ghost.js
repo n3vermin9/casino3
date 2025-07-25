@@ -141,7 +141,7 @@ function updateGhostPosition() {
         clearInterval(coefInterval);
         logHistory('Ghost Crash', `-${depValue}`);
         handleGhostLost();
-        handleModal(`you lost`);
+        handleModal(`You lost`);
         handleReset();
         return;
     }

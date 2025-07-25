@@ -39,6 +39,10 @@ function handleReset() {
   depValue = 0;
   probablyWin.innerText = ''
   openedTiles = 0
+
+  if (parseInt(input.value) > parseInt(balance.innerText)) {
+    input.value = ''
+  }
 }
 
 let countValue = 3;
@@ -121,9 +125,11 @@ function tilesGen() {
         }
         if (matrix[index] == 0) {
           child.style.backgroundImage = "url('../imgs/sakuraImg.png')";
+          child.style.backgroundSize = '70%'
           child.style.border = '1px solid rgb(48, 48, 48)'
         } else {
           child.style.backgroundImage = "url('../imgs/badSakuraImg.png')";
+          child.style.backgroundSize = '70%'
           child.style.border = '1px solid rgb(83, 48, 48)'
           child.style.opacity = 1;
         }
@@ -142,7 +148,7 @@ function tilesGen() {
         setTimeout(() => {
           fillTiles()
           setTimeout(() => {
-            handleModal('you lost')
+            handleModal('You lost')
             logHistory('Gold Sakura', `-${depValue}`);
             container.style.filter = 'brightness(.3)';
             setTimeout(() => {

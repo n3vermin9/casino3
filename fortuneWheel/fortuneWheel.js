@@ -103,7 +103,7 @@ btnDep.addEventListener('click', (event) => {
           break;
 
         case (current <= -16 && current >= -45 || current <= -76 && current >= -104 || current <= -136 && current >= -164 || current <= -196 && current >= -225 || current <= -256 && current >= -285 || current <= -316 && current >= -345):
-          handleModal('you lost');
+          handleModal('You lost');
           logHistory('Fortune wheel', `-${depValue}`);
           break; 
       }

@@ -1,4 +1,5 @@
 export const gamesList = [
+  {image: 'imgs/badPotion.png', name: 'Potion Rise', link: 'potionRise/potionRise.html', filter: false},
   {image: 'imgs/sakuraImg.png', name: 'Gold Sakura', link: 'goldSakura/goldSakura.html', filter: false},
   {image: 'imgs/slots.png', name: 'Tg Slots', link: 'slots/slots.html', filter: true},
   {image: 'imgs/ghost.png', name: 'Ghost Crash', link: 'ghost/ghost.html', filter: false},

@@ -1,0 +1,66 @@
+.coefs {
+  flex-direction: column-reverse;
+  height: 469px !important;
+  width: 50px !important;
+  left: 10px;
+  top: -34px !important;
+  background: none !important;
+}
+
+.coefs > * {
+  width: 40px !important;
+  background: none !important;
+  opacity: 0.3;
+  transition: opacity .3s ease !important;
+}
+
+.tiles {
+  width: 270px;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.tile {
+  background: #222;
+  border-radius: 5px;
+  width: 60px;
+  height: 60px;
+  color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 30%;
+  transition: background 0.4s ease;
+}
+
+.pointer-div {
+  position: absolute;
+  left: -5px;
+  background: #ffffff30;
+  border: 1px solid #ffffff30;
+  width: 280px;
+  height: 70px;
+  bottom: -5px;
+  border-radius: 3px;
+  z-index: -1;
+  transition: transform .5s ease;
+}
+
+.probably-win {
+  left: 20px !important;
+  top: -70px !important;
+  min-width: 100px;
+  width: 60px;
+  justify-content: start !important;
+}
+
+.probably-win.hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}

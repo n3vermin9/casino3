@@ -1,15 +1,6 @@
-.game-section {
-  /* border: 1px solid white; */
-}
-
-* {
-  /* border: 1px solid red; */
-}
-
 .tiles {
   width: 90%;
   height: 90%;
-  /* border: 1px solid #ffffff90; */
   background: #141414;
   border-radius: 7px;
   display: grid;
@@ -32,12 +23,11 @@
   cursor: pointer;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 70%;
+  background-size: 10%;
   transition: background 0.1s ease;
 }
 
 .tile > * {
-  /* opacity: 0; */
   transition: opacity 0.2s ease;
 }
 
@@ -52,7 +42,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: #fff; */
   border-radius: 10px;
   gap: 4px;
   overflow: hidden;
@@ -108,7 +97,6 @@ input[type="number"] {
 }
 
 .probably-win {
-  /* border: 1px solid red; */
   position: absolute !important;
   left: 20px !important;
   top: 0 !important;
@@ -118,7 +106,6 @@ input[type="number"] {
   padding-left: 10px;
 }
 .coef-div {
-  /* border: 1px solid red; */
   position: absolute !important;
   right: 20px !important;
   top: 0 !important;

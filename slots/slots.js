@@ -32,7 +32,7 @@ const emoArr = [
   '../imgs/frog.png',
   '../imgs/jester.png',
   '../imgs/voodoo.png',
-  '../imgs/badPoison.png',
+  '../imgs/badPotion.png',
   '../imgs/pepe.png',
   '../imgs/mushroom.png',
   '../imgs/lips.png'
@@ -40,7 +40,7 @@ const emoArr = [
 
 const payouts = {
   '../imgs/pepe.png': { multiplier: 100, probability: 0.01 },     // 1% (Jackpot)
-  '../imgs/badPoison.png': { multiplier: 50, probability: 0.02 },  // 2% (Rare loss)
+  '../imgs/badPotion.png': { multiplier: 50, probability: 0.02 },  // 2% (Rare loss)
   '../imgs/frog.png': { multiplier: 10, probability: 0.08 },       // 8% (Big win)
   '../imgs/mushroom.png': { multiplier: 6, probability: 0.12 },    // 12% (Medium win)
   '../imgs/jester.png': { multiplier: 3, probability: 0.22 },      // 22% (Small win)
@@ -61,7 +61,7 @@ function showPayoutInfo() {
     { image: '../imgs/jester.png', name: 'Jester', multiplier: 3, probability: '30%' },
     { image: '../imgs/lips.png', name: 'Lips', multiplier: 3, probability: '30%' },
     { image: '../imgs/voodoo.png', name: 'Voodoo', multiplier: 1, probability: '60%' },
-    { image: '../imgs/badPoison.png', name: 'Bad Poison', multiplier: 0, probability: '30%' }
+    { image: '../imgs/badPotion.png', name: 'Bad Poison', multiplier: 0, probability: '30%' }
   ];
 
   // Create modal container
@@ -396,7 +396,7 @@ function handleStart() {
                   currentStoppedColumn = 2;
                   setTimeout(() => {
                       if (!checkWin()) {
-                          handleModal('you lost');
+                          handleModal('You lost');
                           logHistory('Tg Slots', `-${depValue}`);
                       }
                       setTimeout(handleReset, 1000);
